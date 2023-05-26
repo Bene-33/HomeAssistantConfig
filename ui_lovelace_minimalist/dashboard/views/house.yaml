@@ -1,0 +1,80 @@
+title: "House"
+path: "house"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "horizontal-stack"
+    cards:
+    - type: custom:mini-graph-card
+      entities:
+        - sensor.speedtest_download
+      align_icon: left
+      align_state: center
+      name: 'Download'
+      hours_to_show: 24
+      tap_action: 
+        action: more-info
+      show:
+        fill: fade
+        state: true
+        name: true
+        legend: true
+        icon: true
+        labels: false
+        icon_adaptive_color: true
+        name_adaptive_color: true
+        extrema: false
+        average: true
+      color_thresholds:
+        - value: 0
+          color: "#c9210e"
+        - value: 60
+          color: "#c9620e"
+        - value: 85
+          color: "#18820a"
+    - type: custom:mini-graph-card
+      entities:
+        - sensor.speedtest_upload
+      align_icon: left
+      align_state: center
+      name: 'Upload'
+      hours_to_show: 24
+      tap_action: 
+        action: more-info
+      show:
+        fill: fade
+        state: true
+        name: true
+        legend: true
+        icon: true
+        labels: false
+        icon_adaptive_color: true
+        name_adaptive_color: true
+        extrema: false
+        average: true
+      color_thresholds:
+        - value: 0
+          color: "#c9210e"
+        - value: 30
+          color: "#c9620e"
+        - value: 45
+          color: "#18820a"
+
+  - type: horizontal-stack
+    cards:
+      - type: picture
+        image: !secret wifiqr 
+
+  - type: 'vertical-stack'
+    cards:
+      - type: 'custom:button-card'
+        template: card_title
+        name: !secret wifissid
+        label: 'SSID' 
+      - type: 'custom:button-card'
+        template: card_title
+        name: !secret wifipw
+        label: 'Passwort' 

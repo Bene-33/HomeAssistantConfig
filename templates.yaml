@@ -1,0 +1,19 @@
+#### Sensoren ####
+- sensor:
+
+#Wasserfilter: Zeit bis zum nächstne Wechseln ausrechnen
+  - name: "wasser_filter_verbliebene_zeit"
+    unit_of_measurement: " Wochen"
+    state: >-
+      {%- set inst = as_timestamp(states('input_datetime.wasser_filter_gewechselt')) -%}
+      {%- set dif = states('input_number.wasser_filter_nutzungsdauer') | int * 604800 -%}
+      {%- set nt = as_timestamp(states('sensor.date')) -%}
+      {{ (((inst + dif) - nt) / 604800) | round(0) }}
+        
+#angeschaltete Lichter zählen
+  - name: "counter_lights_on"
+    state: >-
+      {{ states.light|selectattr('state','equalto','on')|list|count }}
+
+
+

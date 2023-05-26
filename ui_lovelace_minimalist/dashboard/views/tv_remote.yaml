@@ -1,0 +1,34 @@
+title: "Remote"
+path: "tv_remote"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "custom:philips-tv-remote"
+    name: Philips TV
+    entity: media_player.65pus8507_12_2
+    remote: remote.65pus8507_12_remote
+    sources:
+      - icon: "mdi:netflix"
+        url: "com.netflix.ninja.MainActivity-com.netflix.ninja"
+      - icon: "mdi:steam"
+        url: "com.valvesoftware.steamlink.SteamShellActivity-com.valvesoftware.steamlink"
+      - icon: "mdi:youtube"
+        url: "com.google.android.apps.youtube.tv.activity.ShellActivity-com.google.android.youtube.tv"
+      - icon: "mdi:twitch"
+        url: "tv.twitch.starshot64.app.StarshotActivity-tv.twitch.android.app"
+    channels:
+      - image: /local/images/tv_logo/channel_1.png
+        number: "1"
+      - image: /local/images/tv_logo/channel_2.png
+        number: "1"
+    color_buttons: enable
+    dimensions:
+      scale: 0.98
+      border_width: 3px
+    colors:
+      buttons: var(--deactive-background-button-color)
+      texts: pink
+      background: rgba(95,155,234)

@@ -1,0 +1,45 @@
+title: "Keller"
+path: "keller"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: Wäsche Timer
+
+  - type: vertical-stack
+    cards:
+      - type: custom:flipdown-timer-card
+        entity: timer.waschen_pflegeleicht_plus_30degc
+        show_error: false
+        show_title: true
+        show_header: true
+        show_hour: auto
+      - type: custom:flipdown-timer-card
+        entity: timer.baumwolle_60deg
+        show_error: false
+        show_title: true
+        show_header: true
+        show_hour: auto
+      - type: custom:flipdown-timer-card
+        entity: timer.waschen_hemden_40degc
+        show_error: false
+        show_title: true
+        show_header: true
+        show_hour: auto
+      - type: custom:flipdown-timer-card
+        entity: timer.waschen_sport_30degc
+        show_error: false
+        show_title: true
+        show_header: true
+        show_hour: auto
+      - type: custom:flipdown-timer-card
+        entity: timer.waschen_wolle_30degc
+        show_error: false
+        show_title: true
+        show_header: true
+        show_hour: auto
+

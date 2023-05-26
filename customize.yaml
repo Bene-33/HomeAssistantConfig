@@ -1,0 +1,11 @@
+binary_sensor.workday_sensor:
+  workdays:
+  - mon
+  - tue
+  - wed
+  - thu
+  - fri
+  excludes:
+  - sat
+  - sun
+  friendly_name: Workday Sensor

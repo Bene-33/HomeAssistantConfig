@@ -1,0 +1,20 @@
+### Allgemeine Hinweise ###
+#alles wird ignoriert mit "*"
+#Whitelist (werden nicht ignoriert) Dateien/Ordner mit "!", 
+#für Ordner ist "!/" zu verwenden. Für Ordner bzw. Dateien in der zweiten Ebene"!/<Ordner>/**"
+#ignore Ordner "." <Ordner>
+
+#alles ignorieren#
+*
+
+# Whitelist 
+!*.yaml
+!.gitignore
+!/ui_lovelace_minimalist/
+!/ui_lovelace_minimalist/**
+!/packages/
+!/packages/**
+
+#einzelne Dateien ignorieren
+secrets.yaml
+home.yaml

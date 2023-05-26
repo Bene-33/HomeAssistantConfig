@@ -1,0 +1,567 @@
+- id: '1619623682098'
+  alias: 'Backup Fehler '
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.snapshots_stale
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: 'Googledrive Backup Fehler '
+      message: 'Fehler beheben '
+  - if:
+    - condition: device
+      device_id: 72688f69e98af530dd7c017b970515aa
+      domain: media_player
+      entity_id: media_player.benedikt_pc
+      type: is_on
+    then:
+    - service: notify.benedikt_pc
+      data:
+        message: 'Fehler beheben '
+        title: 'Googledrive Backup Fehler '
+  mode: single
+- id: '1619640116135'
+  alias: 'Alfred Staubsaugen '
+  description: ''
+  trigger:
+  - platform: time
+    at: '10:00:00'
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    before: 00:00:00
+    after: 00:00:00
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: person.benedikt
+      state: home
+  action:
+  - device_id: 57586eb91c79551e919a2a78245134c3
+    domain: vacuum
+    entity_id: vacuum.alfred
+    type: clean
+  mode: single
+- id: '1620231491485'
+  alias: Alfred benötigt Hilfe
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: vacuum.alfred
+    from: cleaning
+    to: error
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: Alfred braucht Hilfe
+      message: Alfred Steckt fest oder braucht Hilfe beim Reinigen
+  - if:
+    - condition: device
+      device_id: 72688f69e98af530dd7c017b970515aa
+      domain: media_player
+      entity_id: media_player.benedikt_pc
+      type: is_on
+    then:
+    - service: notify.benedikt_pc
+      data:
+        message: Alfred Steckt fest oder braucht Hilfe beim Reinigen
+        title: Alfred braucht Hilfe
+  mode: single
+- id: '1620671396281'
+  alias: TV und Licht anschalten
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 4dc36994073ce42f196689addbcaeede
+    domain: media_player
+    entity_id: media_player.65pus8507_12_2
+    type: turned_on
+  condition:
+  - condition: or
+    conditions:
+    - condition: sun
+      after: sunset
+    - condition: sun
+      before: sunrise
+  action:
+  - scene: scene.tv_licht
+  mode: single
+- id: '1620854843377'
+  alias: 'TV Licht auschalten '
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 4dc36994073ce42f196689addbcaeede
+    domain: media_player
+    entity_id: media_player.65pus8507_12_2
+    type: turned_off
+  condition: []
+  action:
+  - scene: scene.tv_licht_aus
+  mode: single
+- id: '1621004279757'
+  alias: Alfred muss geleert werden
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 57586eb91c79551e919a2a78245134c3
+    entity_id: binary_sensor.alfred_bin_full
+    domain: binary_sensor
+  condition:
+  - type: is_on
+    condition: device
+    device_id: 57586eb91c79551e919a2a78245134c3
+    entity_id: binary_sensor.alfred_bin_full
+    domain: binary_sensor
+  action:
+  - service: notify.notify
+    data:
+      title: Alfred leeren
+      message: 'Staubbehälter leeren '
+  - if:
+    - condition: device
+      device_id: 72688f69e98af530dd7c017b970515aa
+      domain: media_player
+      entity_id: media_player.benedikt_pc
+      type: is_on
+    then:
+    - service: notify.benedikt_pc
+      data:
+        message: 'Staubbehälter leeren '
+        title: Alfred leeren
+  - repeat:
+      while:
+      - type: is_on
+        condition: device
+        device_id: 57586eb91c79551e919a2a78245134c3
+        entity_id: binary_sensor.alfred_bin_full
+        domain: binary_sensor
+      sequence:
+      - delay:
+          hours: 3
+          minutes: 0
+          seconds: 0
+          milliseconds: 0
+      - service: notify.notify
+        data:
+          message: 'Staubbehälter leeren '
+          title: Alfred leeren
+      - if:
+        - condition: device
+          device_id: 72688f69e98af530dd7c017b970515aa
+          domain: media_player
+          entity_id: media_player.benedikt_pc
+          type: is_on
+        then: []
+  mode: single
+- id: '1622209039392'
+  alias: 'Alfred reinigen  '
+  description: ''
+  trigger:
+  - platform: time
+    at: '19:00'
+  condition:
+  - condition: template
+    value_template: '{{ now().day == 20 }}'
+  action:
+  - service: notify.notify
+    data:
+      title: 'Alfred reinigen '
+      message: 'Alfred von Haaren an den Rollen befreien und Sensoren reinigen '
+  - if:
+    - condition: device
+      device_id: 72688f69e98af530dd7c017b970515aa
+      domain: media_player
+      entity_id: media_player.benedikt_pc
+      type: is_on
+    then:
+    - service: notify.benedikt_pc
+      data:
+        message: 'Alfred von Haaren an den Rollen befreien und Sensoren reinigen '
+        title: 'Alfred reinigen '
+  mode: single
+- id: '1629961083917'
+  alias: 'Waschmaschine ist fertig '
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: timer.baumwolle_60deg
+    from: active
+    to: idle
+  - platform: state
+    entity_id: timer.waschen_hemden_40degc
+    from: active
+    to: idle
+  - platform: state
+    entity_id: timer.waschen_pflegeleicht_plus_30degc
+    from: active
+    to: idle
+  - platform: state
+    entity_id: timer.waschen_sport_30degc
+    from: active
+    to: idle
+  - platform: state
+    entity_id: timer.waschen_wolle_30degc
+    from: active
+    to: idle
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: Waschmaschine ist fertig
+      message: Wäsche kann aufgehängt werden
+  - if:
+    - condition: device
+      device_id: 72688f69e98af530dd7c017b970515aa
+      domain: media_player
+      entity_id: media_player.benedikt_pc
+      type: is_on
+    then:
+    - service: notify.benedikt_pc
+      data:
+        message: Wäsche kann aufgehängt werden
+        title: Waschmaschine ist fertig
+  - service: tts.speak
+    data:
+      cache: true
+      language: de
+      options:
+        voice: de-eva_k-x-low
+      media_player_entity_id: media_player.bose_home_speaker_300
+      message: 'Wäsche ist fertig '
+    target:
+      entity_id: tts.piper
+  mode: single
+- id: '1649874529226'
+  alias: TV Licht bei Sonnenuntergang
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition:
+  - condition: device
+    device_id: 4dc36994073ce42f196689addbcaeede
+    domain: media_player
+    entity_id: media_player.65pus8507_12_2
+    type: is_on
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.tv_licht
+    metadata: {}
+  mode: single
+- id: '1660470758049'
+  alias: Wasserfilter Datum Heute
+  description: ''
+  trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: wasser_filter_gewechselt
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    data:
+      date: '{{ as_timestamp(now())|timestamp_custom(''%Y-%m-%d'') }}'
+    entity_id: input_datetime.wasser_filter_gewechselt
+  mode: single
+- id: '1667023100430'
+  alias: Wasserfilter Wechsel
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.wasser_filter_verbliebene_zeit
+    from: '1'
+    to: '0'
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: Wasserfilter heute Wechseln
+      message: 2x spülen danach nutzen
+  - if:
+    - condition: device
+      device_id: 72688f69e98af530dd7c017b970515aa
+      domain: media_player
+      entity_id: media_player.benedikt_pc
+      type: is_on
+    then:
+    - service: notify.benedikt_pc
+      data:
+        message: 2x spülen danach nutzen
+        title: Wasserfilter heute Wechseln
+  mode: single
+- id: '1670681858395'
+  alias: PC Licht bei Sonnenuntergang
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition:
+  - condition: state
+    entity_id: sensor.benedikt_pc_sessionstate
+    state: Unlocked
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.gaming
+    metadata: {}
+  mode: single
+- id: '1670681939371'
+  alias: PC und Licht anschalten
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.benedikt_pc_sessionstate
+    to: Unlocked
+  condition:
+  - condition: sun
+    before: sunrise
+    after: sunset
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.gaming
+    metadata: {}
+  mode: single
+- id: '1670681974598'
+  alias: PC Licht ausschalten
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.benedikt_pc_sessionstate
+    to: unavailable
+  - platform: state
+    entity_id:
+    - sensor.benedikt_pc_sessionstate
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.gaming_licht_aus
+    metadata: {}
+  mode: single
+- id: '1682762966505'
+  alias: Update Verfügbar action
+  description: ''
+  use_blueprint:
+    path: mdegat01/update_notifications.yaml
+    input:
+      reminder_hours: '3'
+      update_entities:
+      - update.calibre_update
+      - update.calibre_web_update
+      - update.cloudflared_update
+      - update.emqx_update
+      - update.grafana_update
+      - update.home_assistant_core_update
+      - update.home_assistant_google_drive_backup_update
+      - update.home_assistant_operating_system_update
+      - update.home_assistant_supervisor_update
+      - update.mariadb_update
+      - update.matter_server_update
+      - update.samba_share_update
+      - update.spotify_connect_update
+      - update.ssh_web_terminal_update
+      - update.studio_code_server_update
+      - update.tandoor_recipes_update
+      - update.vaultwarden_bitwarden_update
+      - update.piper_update
+      - update.whisper_update
+      - update.adguard_home_update
+      - update.pgadmin4_update
+      - update.timescaledb_update
+      send_to_ha: true
+      take_backup: false
+      run_config_check: false
+      mobile_app_device: 9c6f616e77139523b879c5204d62a9bd
+      only_after: 07:00:00
+      only_before: '20:00:00'
+- id: '1682763467689'
+  alias: Batterien low
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      time: '17:00:00'
+      exclude:
+        entity_id:
+        - sensor.alfred_battery_level
+        - sensor.handy_bene_battery_level
+        - sensor.huaweihandy_akkufullstand
+      actions:
+      - service: notify.notify
+        data:
+          data:
+          title: Batterien tauschen
+          message: '{{sensors}}'
+- id: '1682763613807'
+  alias: Kontaktlinsen wechseln
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.kontaktlinsen
+    enabled: true
+  condition:
+  - condition: template
+    value_template: '{{ state_attr(''input_number.kontaktlinsen'', ''max'')|float(0)
+      == states(''input_number.kontaktlinsen'')|float(0) }}'
+    enabled: true
+  action:
+  - service: input_number.set_value
+    data:
+      value: 0
+    target:
+      entity_id: input_number.kontaktlinsen
+  - service: notify.mobile_app_handy_bene
+    data:
+      title: Kontaktlinsen wechseln
+      message: Kontaktlinsen wegwerfen und neue benutzen
+  mode: single
+- id: '1683996473936'
+  alias: 'Aloe Vera gießen '
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.aloe_vera
+      plant_image: /local/bilder/aloe_vera.jpg
+      reminder_time: '18:00:00'
+      interval_days: 14
+      notification_title: Aloe Vera gießen
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+      action_name: erledigt
+      notification_message: 'Gießen, vorher Erde überprüfen '
+- id: '1683996737854'
+  alias: Bogenhanf gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.bogenhanf
+      plant_image: /local/bilder/bogenhanf.jpg
+      reminder_time: '18:00:00'
+      interval_days: 14
+      notification_title: Bogenhanf gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1683997017749'
+  alias: Efeutute gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.efeutute
+      plant_image: /local/bilder/efeutute.jpg
+      reminder_time: '18:00:00'
+      notification_title: Efeutute gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1683997207095'
+  alias: Korallenkaktus gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.korallenkaktus
+      plant_image: /local/bilder/korallenkaktus.jpg
+      reminder_time: '18:00:00'
+      notification_title: Korallenkaktus gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1683997433065'
+  alias: Bohemian Bravour gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.bohemian_bravour
+      notification_title: Bohemian Bravour gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+      plant_image: /local/bilder/bohemian_bravour.jpg
+      reminder_time: '18:00:00'
+- id: '1683997588747'
+  alias: Grünlilie gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.grunlilie
+      reminder_time: '18:00:00'
+      notification_title: Grünlilie gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+      plant_image: /local/bilder/gruenlilie.jpg
+- id: '1683997699028'
+  alias: Einblatt gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.einblatt
+      reminder_time: '18:00:00'
+      notification_title: Einblatt gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+      plant_image: /local/bilder/einblatt.jpg
+- id: '1683997946348'
+  alias: Glücksfeder gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.glucksfeder
+      plant_image: /local/bilder/gluecksfeder.jpg
+      reminder_time: '18:00:00'
+      interval_days: 14
+      notification_title: Glücksfeder gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1684962963899'
+  alias: Benachrichtigung Pollenbelastung Graeser
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00:00
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.dwd_pollen_graeser
+    attribute: today
+    above: 0
+  action:
+  - service: notify.mobile_app_handy_bene
+    data:
+      title: Achtung Gräserpollen Belastung ist
+      message: '{% if state_attr(''sensor.dwd_pollen_graeser'',''today'') == 6 %}  übertrieben
+        hoch  {% elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 5 %}  sehr
+        hoch  {% elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 4 %}
+        hoch {% elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 3 %}  mittel  {%
+        elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 2 %}  niedrig  {%
+        elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 1 %} sehr niedrig     {%
+        else %} nicht vorhanden {% endif %}'
+  mode: single

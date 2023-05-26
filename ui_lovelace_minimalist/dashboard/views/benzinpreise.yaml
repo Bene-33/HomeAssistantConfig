@@ -1,0 +1,57 @@
+title: "Benzinpreise"
+path: "benzinpreise"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: !secret super1
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: !secret super2
+
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: !secret super3
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: !secret super4
+
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: !secret super5
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: !secret super6
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Benzinpreise 7 Tage"
+
+  - type: custom:mini-graph-card
+    entities:
+      - !secret super1
+      - !secret super2
+      - !secret super3
+    align_icon: left
+    align_state: center
+    name: Preise Super 
+    show:
+      fill: true
+      state: false
+      name: true
+      legend: true
+      icon: false
+      labels: false
+      icon_adaptive_color: false
+      extrema: true
+    hours_to_show: 168

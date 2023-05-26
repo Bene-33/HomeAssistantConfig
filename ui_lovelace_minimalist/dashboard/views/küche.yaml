@@ -1,0 +1,54 @@
+title: "Küche"
+path: "küche"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "leckeres Essen"
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: card_script
+        variables:
+          ulm_card_script_title: Rezepte
+          ulm_card_script_icon: 'mdi:food'
+        tap_action:
+          action: url
+          url_path: !secret tandoorurl 
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Wasserfilter"
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: "card_script"
+        variables:
+          ulm_card_script_title: 'Wechsel durchgeführt'
+          ulm_card_script_icon: 'mdi:refresh'
+        tap_action:
+          action: call-service
+          service: automation.trigger
+          service_data:
+            entity_id: automation.wasserfilter_datum_heute
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: sensor.wasser_filter_verbliebene_zeit
+        variables:
+          ulm_card_generic_swap_name: 'Wechsel in'
+          ulm_card_generic_swap_icon: 'mdi:water-sync'
+      - type: 'custom:button-card'
+        template: card_generic_swap
+        entity: input_datetime.wasser_filter_gewechselt
+        variables:
+          ulm_card_generic_swap_name: 'letzter Wechsel'
+          ulm_card_generic_swap_icon: 'mdi:water-check'

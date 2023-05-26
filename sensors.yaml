@@ -1,0 +1,46 @@
+
+- platform: systemmonitor
+  resources:
+  - type: processor_use
+  - type: processor_temperature
+  - type: memory_free
+  - type: disk_use_percent
+    arg: /
+  - type: disk_use
+  - type: disk_free
+- platform: time_date
+  display_options:
+  - 'time'
+  - 'date'
+
+#Pollenflug daten importieren vom Deutschen Wetter Dienst
+- platform: rest
+  scan_interval: 3600
+  name: "DWD Pollen"
+  resource: https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json
+  json_attributes_path: !secret dwd_pollen 
+  json_attributes:
+    #- Erle
+    #- Beifuss
+    #- Ambrosia
+    #- Birke
+    #- Esche
+    #- Hasel
+    - Graeser
+    #- Roggen
+  value_template: "{{ value_json.last_update }}"
+- platform: template
+  sensors:
+    dwd_pollen_graeser:
+      icon_template: "mdi:grass"
+      friendly_name: "Gräser"
+      value_template: >-
+        {% set dwd_state = state_attr('sensor.dwd_pollen', 'Graeser')['today'] %}
+        {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+      attribute_templates:
+        today: >-
+          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Graeser')['today'] %}
+          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+        tomorrow: >-
+          {% set dwd_state = state_attr('sensor.dwd_pollen', 'Graeser')['tomorrow'] %}
+          {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}

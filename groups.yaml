@@ -1,0 +1,10 @@
+all_feul_sensors:
+  name: Benzinpreise
+  all: true
+  entities:
+    - !secret super1 
+    - !secret super2
+    - !secret super3 
+    - !secret super4
+    - !secret super5
+    - !secret super6

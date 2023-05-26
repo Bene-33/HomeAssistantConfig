@@ -1,0 +1,27 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+
+
+#!include separate config files
+recorder: !include mariadb.yaml
+#influxdb: !include influxdb.yaml
+sensor: !include sensors.yaml
+http: !include ssl.yaml
+tts: !include google_translate.yaml
+spotcast: !include spotcast.yaml
+template: !include templates.yaml
+
+homeassistant:
+  packages: !include_dir_named packages
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+
+

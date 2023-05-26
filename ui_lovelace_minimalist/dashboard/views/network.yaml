@@ -1,0 +1,135 @@
+title: "Network"
+path: "network"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.backup_state
+      ulm_chip_mdi_icon_state_icon: mdi:cloud-check
+      ulm_chip_mdi_icon_state_icon_color: green
+
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.uptime
+      ulm_chip_mdi_icon_state_icon: mdi:clock-check
+      ulm_chip_mdi_icon_state_icon_color: grey
+
+  - type: "horizontal-stack"
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.processor_use_percent
+        align_icon: left
+        align_state: center
+        name: 'CPU Auslastung'
+        hours_to_show: 24
+        hold_action: 
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: true
+        color_thresholds:
+          - value: 0
+            color: "#18820a"
+          - value: 40
+            color: "#ad5d07"
+          - value: 60
+            color: "#c9210e"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.processor_temperature
+        align_icon: left
+        align_state: center
+        name: 'CPU Temperatur'
+        hours_to_show: 24
+        hold_action: 
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: true
+        color_thresholds:
+          - value: 0
+            color: "#18820a"
+          - value: 60
+            color: "#ad5d07"
+          - value: 85
+            color: "#c9210e"
+  - type: "horizontal-stack"
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.memory_free
+        align_icon: left
+        align_state: center
+        name: 'RAM Frei'
+        hours_to_show: 24
+        hold_action: 
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: true
+        color_thresholds:
+          - value: 4000
+            color: "#18820a"
+          - value: 2000
+            color: "#ad5d07"
+          - value: 1000
+            color: "#c9210e"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.disk_use_percent
+        align_icon: left
+        align_state: center
+        name: 'Speicher'
+        hours_to_show: 24
+        hold_action: 
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: false
+        color_thresholds:
+          - value: 0
+            color: "#18820a"
+          - value: 60
+            color: "#ad5d07"
+          - value: 90
+            color: "#c9210e"

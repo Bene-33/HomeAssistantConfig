@@ -1,0 +1,80 @@
+title: "Schlafzimmer"
+path: "schlafzimmer"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "horizontal-stack"
+    cards:
+    - type: custom:mini-graph-card
+      entities:
+        - sensor.lumi_lumi_weather_temperature_3
+      align_icon: left
+      align_state: center
+      name: 'Temperatur'
+      hours_to_show: 24
+      hold_action: 
+        action: more-info
+      show:
+        fill: fade
+        state: true
+        name: true
+        legend: true
+        icon: true
+        labels: false
+        icon_adaptive_color: true
+        name_adaptive_color: true
+        extrema: false
+        average: true
+      color_thresholds:
+        - value: 0
+          color: "#128ef3"
+        - value: 15
+          color: "#18820a"
+        - value: 19
+          color: "#c9210e"
+    - type: custom:mini-graph-card
+      entities:
+        - sensor.lumi_lumi_weather_humidity_3
+      align_icon: left
+      align_state: center
+      name: 'Humidity'
+      hours_to_show: 24
+      hold_action: 
+        action: more-info
+      show:
+        fill: fade
+        state: true
+        name: true
+        legend: true
+        icon: true
+        labels: false
+        icon_adaptive_color: true
+        name_adaptive_color: true
+        extrema: false
+        average: true
+      color_thresholds:
+        - value: 0
+          color: "#c9210e"
+        - value: 39
+          color: "#18820a"
+        - value: 61
+          color: "#c9210e"
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Sensoren"
+
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        template: card_battery
+        entity: sensor.lumi_lumi_weather_battery_3
+        variables:
+          ulm_card_battery_charger_type_entity_id: sensor.lumi_lumi_weather_battery_3
+          ulm_card_battery_battery_level_danger: 20
+          ulm_card_battery_battery_level_warning: 30
+          ulm_card_battery_name: Thermometer
+          ulm_card_battery_charging_animation: true

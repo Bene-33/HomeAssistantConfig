@@ -1,0 +1,118 @@
+title: "Büro"
+path: "büro"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "horizontal-stack"
+    cards:
+    - type: custom:mini-graph-card
+      entities:
+        - sensor.lumi_lumi_weather_temperature
+      align_icon: left
+      align_state: center
+      name: 'Temperatur'
+      hours_to_show: 24
+      hold_action: 
+        action: more-info
+      show:
+        fill: fade
+        state: true
+        name: true
+        legend: true
+        icon: true
+        labels: false
+        icon_adaptive_color: true
+        name_adaptive_color: true
+        extrema: false
+        average: true
+      color_thresholds:
+        - value: 0
+          color: "#128ef3"
+        - value: 19
+          color: "#18820a"
+        - value: 25
+          color: "#c9210e"
+    - type: custom:mini-graph-card
+      entities:
+        - sensor.lumi_lumi_weather_humidity
+      align_icon: left
+      align_state: center
+      name: 'Humidity'
+      hours_to_show: 24
+      hold_action: 
+        action: more-info
+      show:
+        fill: fade
+        state: true
+        name: true
+        legend: true
+        icon: true
+        labels: false
+        icon_adaptive_color: true
+        name_adaptive_color: true
+        extrema: false
+        average: true
+      color_thresholds:
+        - value: 0
+          color: "#c9210e"
+        - value: 39
+          color: "#18820a"
+        - value: 61
+          color: "#c9210e"
+      
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Geräte"
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.pc_licht
+        variables:
+          ulm_card_light_icon: hue:lightstrip-tv
+          ulm_card_light_name: PC Licht
+          ulm_card_light_enable_collapse: true
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_popup_tap: true
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.smart_ambient_light
+        variables:
+          ulm_card_light_icon: hue:go
+          ulm_card_light_name: Hintergrund
+          ulm_card_light_enable_collapse: true
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_popup_tap: true
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Sensoren"
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_binary_sensor_alert
+        entity: sensor.benedikt_pc_sessionstate
+        variables:
+          ulm_show_last_changed: true
+          ulm_card_binary_sensor_alert_name: PC-Benedikt
+          ulm_card_binary_sensor_alert_icon: mdi:monitor
+          ulm_card_binary_sensor_alert_color: blue
+          ulm_card_binary_sensor_alert_force_background_color: blue
+      - type: 'custom:button-card'
+        template: card_battery
+        entity: sensor.lumi_lumi_weather_battery
+        variables:
+          ulm_card_battery_charger_type_entity_id: sensor.lumi_lumi_weather_battery
+          ulm_card_battery_battery_level_danger: 20
+          ulm_card_battery_battery_level_warning: 30
+          ulm_card_battery_name: Thermometer
+          ulm_card_battery_charging_animation: true

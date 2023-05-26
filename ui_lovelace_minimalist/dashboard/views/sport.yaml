@@ -1,0 +1,27 @@
+title: "Sport"
+path: "sport"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Eintracht"
+
+  - type: custom:teamtracker-card
+    entity: sensor.team_tracker_sge
+    card_title: Bundesliga
+    home_side: None
+    outline: true
+    outline_color: white
+    show_timeouts: true
+    show_rank: true
+    show_league: true
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Galaxy"
+
+
