@@ -37,7 +37,7 @@ cards:
     entities:
       - sensor.dwd_pollen_graeser
     align_icon: left
-    align_state: left
+    align_state: center
     name: "T -7"
     hours_to_show: 168
     show:
