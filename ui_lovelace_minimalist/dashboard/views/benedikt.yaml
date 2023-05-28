@@ -6,69 +6,68 @@ cards:
     variables:
       ulm_chip_back_path: home
 
-  - type: 'custom:button-card'
-    template: card_title
-    label: "Pollenbelastung morgen"
-
-  - type: horizontal-stack
+  - type: vertical-stack
     cards:
-    - type: "custom:bar-card"
-      entity: sensor.dwd_pollen_graeser
-      attribute: tomorrow
-      titel: 'Pollenbelastung morgen'
-      min: 1
-      max: 6
-      decimal: 0
-      direction: up
-      entity_row: false
-      serverity:
-        - hide: false
-        - from: 1
-          to: 2
-          color: yellow
-        - from: 3
-          to: 4
-          color: orange
-        - from: 5
-          to: 6
-          color: red
-    - type: custom:mini-graph-card
-      entities:
-        - sensor.dwd_pollen_graeser
-      align_icon: left
-      align_state: center
-      name: 'letzte Woche'
-      hours_to_show: 168
-      show:
-        fill: fade
-        state: false
-        name: true
-        legend: true
-        icon: true
-        labels: false
-        icon_adaptive_color: true
-        extrema: false
-        average: true
-      color_thresholds:
-        - value: 0
-          color: green
-        - value: 1
-          color: yellow
-        - value: 2
-          color: yellow
-        - value: 3
-          color: orange 
-        - value: 4
-          color: orange
-        - value: 5
-          color: red
-        - value: 6
-          color: red
+      - type: "custom:button-card"
+        template: card_title
+        label: "Pollenbelastung morgen"
+      - type: "custom:bar-card"
+        entity: sensor.dwd_pollen_graeser
+        attribute: tomorrow
+        titel: "Pollenbelastung morgen"
+        color: var(--custom-bar-card-color, var(--primary-color))
+        limit-value: true 
+        min: 1
+        max: 6
+        decimal: 0
+        direction: right
+        entity_row: false
+        severity:
+          - hide: true
+          - color: Yellow
+            from: 1
+            to: 2
+          - color: Orange
+            from: 3
+            to: 4
+          - color: Red
+            from: 5
+            to: 6
+  - type: custom:mini-graph-card
+    entities:
+      - sensor.dwd_pollen_graeser
+    align_icon: left
+    align_state: left
+    name: "T -7"
+    hours_to_show: 168
+    show:
+      fill: fade
+      state: true
+      name: true
+      legend: true
+      icon: true
+      labels: false
+      icon_adaptive_color: true
+      extrema: false
+      average: true
+    color_thresholds:
+      - value: 0
+        color: green
+      - value: 1
+        color: yellow
+      - value: 2
+        color: yellow
+      - value: 3
+        color: orange
+      - value: 4
+        color: orange
+      - value: 5
+        color: red
+      - value: 6
+        color: red
 
   - type: "custom:button-card"
     template: card_input_number
     entity: input_number.kontaktlinsen
     variables:
-      ulm_card_input_number_name: "Kontaktlinsen getragen (max 30)"
-
-
+      ulm_card_input_number_name: "Kontaktlinsen getragen"
