@@ -40,6 +40,9 @@ cards:
     align_state: center
     name: "T -7"
     hours_to_show: 168
+    color_thresholds_transition: smooth
+    upper_bound: 6
+    lower_bound: 0
     show:
       fill: fade
       state: true
@@ -50,6 +53,7 @@ cards:
       icon_adaptive_color: true
       extrema: false
       average: true
+
     color_thresholds:
       - value: 0
         color: green
