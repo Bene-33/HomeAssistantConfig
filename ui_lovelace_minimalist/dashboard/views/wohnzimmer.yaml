@@ -22,6 +22,7 @@ cards:
       align_state: center
       name: 'Temperatur'
       hours_to_show: 24
+      color_thresholds_transition: smooth
       hold_action: 
         action: more-info
       show:
@@ -49,6 +50,7 @@ cards:
       align_state: center
       name: 'Humidity'
       hours_to_show: 24
+      color_thresholds_transition: smooth
       hold_action: 
         action: more-info
       show:
