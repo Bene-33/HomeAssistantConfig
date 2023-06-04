@@ -384,7 +384,6 @@
       - update.vaultwarden_bitwarden_update
       - update.piper_update
       - update.whisper_update
-      - update.adguard_home_update
       - update.pgadmin4_update
       - update.timescaledb_update
       send_to_ha: true
@@ -393,6 +392,7 @@
       mobile_app_device: 9c6f616e77139523b879c5204d62a9bd
       only_after: 07:00:00
       only_before: '20:00:00'
+      mobile_app_device_2: 5c3767da7f2f55992a32daea6d9d0b06
 - id: '1682763467689'
   alias: Batterien low
   description: ''
