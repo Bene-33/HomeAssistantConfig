@@ -5,13 +5,6 @@ cards:
     template: chip_back
     variables:
       ulm_chip_back_path: home
-  - type: 'custom:button-card'
-    template: chip_navigate
-    label: Remote
-    variables:
-      ulm_chip_navigate_path: tv_remote
-      ulm_chip_navigate_icon: mdi:remote-tv
-      ulm_chip_navigate_icon_color: 'yellow'
 
   - type: "horizontal-stack"
     cards:
@@ -147,7 +140,7 @@ cards:
         entity: media_player.65pus8507_12_2
         tap_action: 
           action: navigate
-          navigation_path: /ui-lovelace-minimalist/tv_remote
+          navigation_path: "tv_remote"
         variables:
           ulm_card_media_player_name : TV
           ulm_card_media_player_icon: mdi:television
