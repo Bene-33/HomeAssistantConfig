@@ -565,3 +565,16 @@
         elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 1 %} sehr niedrig     {%
         else %} nicht vorhanden {% endif %}'
   mode: single
+- id: '1687007985246'
+  alias: Glückstaler gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.gluckstaler
+      reminder_time: '18:00:00'
+      plant_image: /local/bilder/glueckstaler.jpg
+      notification_title: Glückstaler gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
