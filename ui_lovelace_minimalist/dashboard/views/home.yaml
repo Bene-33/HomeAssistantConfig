@@ -34,9 +34,9 @@ cards:
         name: "Lights"
         color: "yellow"
       entity_3:
-        nav: "sport"
-        icon: "mdi:football"
-        name: Sport
+        nav: "benzinpreise"
+        icon: "mdi:gas-station"
+        name: Tanken
         color: "red"
       entity_4:
         nav: "network"
