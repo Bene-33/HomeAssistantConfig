@@ -16,15 +16,7 @@ cards:
           ulm_chip_mdi_icon_state_entity: sensor.counter_lights_on
           ulm_chip_mdi_icon_state_icon: mdi:lightbulb
           ulm_chip_mdi_icon_state_icon_color: "orange"
-
-      - type: "custom:button-card"
-        template: chip_navigate
-        label: !include superchip
-        variables:
-          ulm_chip_navigate_path: benzinpreise
-          ulm_chip_navigate_icon: mdi:gas-station
-          ulm_chip_navigate_icon_color: "brown"
-
+        
   - type: "custom:button-card"
     template: "card_esh_welcome"
     triggers_update: "input_boolean.minimalist_dropdown"
