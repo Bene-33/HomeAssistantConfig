@@ -75,3 +75,17 @@ cards:
     entity: input_number.kontaktlinsen
     variables:
       ulm_card_input_number_name: "Kontaktlinsen getragen"
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Eintracht"
+
+  - type: custom:teamtracker-card
+    entity: sensor.team_tracker_sge
+    card_title: Bundesliga
+    home_side: None
+    outline: true
+    outline_color: white
+    show_timeouts: true
+    show_rank: true
+    show_league: true

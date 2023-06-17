@@ -20,5 +20,4 @@ views:
   - !include views/benedikt.yaml
   - !include views/julia.yaml
   - !include views/house.yaml
-  - !include views/sport.yaml
   - !include views/tv_remote.yaml
