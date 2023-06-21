@@ -1,8 +1,0 @@
-host: !secret influxhost
-port: !secret influxport
-database: homeassistant
-username: !secret influxdbuser 
-password: !secret influxdbpw 
-max_retries: 3
-default_measurement: state
-
