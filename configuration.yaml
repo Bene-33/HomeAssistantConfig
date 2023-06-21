@@ -9,7 +9,7 @@ scene: !include scenes.yaml
 
 
 #!include separate config files
-recorder: !include mariadb.yaml
+recorder: !include recorder.yaml
 #influxdb: !include influxdb.yaml
 sensor: !include sensors.yaml
 http: !include ssl.yaml
