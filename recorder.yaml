@@ -1,1 +1,1 @@
-db_url: !secret mariadbpw
+db_url: !secret timescaledb
