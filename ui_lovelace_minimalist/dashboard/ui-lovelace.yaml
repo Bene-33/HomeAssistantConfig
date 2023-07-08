@@ -16,7 +16,7 @@ views:
   - !include views/lights.yaml
   - !include views/network.yaml
   - !include views/benzinpreise.yaml
-  - !include views/lab.yaml
+  - !include views/plants.yaml
   - !include views/benedikt.yaml
   - !include views/julia.yaml
   - !include views/house.yaml

@@ -1,3 +1,4 @@
 
-db_url: !secret timescaledb
+  db_url: !secret timescaledb
+  chunk_time_interval: 2592000000000
 
