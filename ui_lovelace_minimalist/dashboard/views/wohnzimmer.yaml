@@ -153,10 +153,10 @@ cards:
           ulm_card_media_player_enable_popup: true
       - type: "custom:button-card"
         template: card_media_player
-        entity: media_player.bose_home_speaker_300
+        entity: media_player.wohnzimmer
         variables:
           ulm_card_light_icon: mdi:speaker
-          ulm_card_light_name: 'Bose Box'
+          ulm_card_light_name: 'Wohnzimmer Box'
           ulm_card_light_enable_collapse: true
           ulm_card_light_enable_slider: true
           ulm_card_light_enable_color: true
