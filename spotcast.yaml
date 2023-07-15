@@ -1,3 +1,6 @@
-
 sp_dc: !secret bene_sp_dc
 sp_key: !secret bene_sp_key
+accounts:
+  julia:
+    sp_dc: !secret julia_sp_dc
+    sp_key: !secret julia_sp_key
