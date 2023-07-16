@@ -8,64 +8,64 @@ cards:
 
   - type: "horizontal-stack"
     cards:
-    - type: custom:mini-graph-card
-      entities:
-        - sensor.lumi_lumi_weather_temperature_2
-      align_icon: left
-      align_state: center
-      name: 'Temperatur'
-      hours_to_show: 24
-      color_thresholds_transition: smooth
-      hold_action: 
-        action: more-info
-      show:
-        fill: fade
-        state: true
-        name: true
-        legend: true
-        icon: true
-        labels: false
-        icon_adaptive_color: true
-        name_adaptive_color: true
-        extrema: false
-        average: true
-      color_thresholds:
-        - value: 0
-          color: "#128ef3"
-        - value: 19
-          color: "#18820a"
-        - value: 25
-          color: "#c9210e"
-    - type: custom:mini-graph-card
-      entities:
-        - sensor.lumi_lumi_weather_humidity_2
-      align_icon: left
-      align_state: center
-      name: 'Humidity'
-      hours_to_show: 24
-      color_thresholds_transition: smooth
-      hold_action: 
-        action: more-info
-      show:
-        fill: fade
-        state: true
-        name: true
-        legend: true
-        icon: true
-        labels: false
-        icon_adaptive_color: true
-        name_adaptive_color: true
-        extrema: false
-        average: true
-      color_thresholds:
-        - value: 0
-          color: "#c9210e"
-        - value: 39
-          color: "#18820a"
-        - value: 61
-          color: "#c9210e"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.lumi_lumi_weather_temperature_2
+        align_icon: left
+        align_state: center
+        name: "Temperatur"
+        hours_to_show: 24
+        color_thresholds_transition: smooth
+        hold_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: true
+        color_thresholds:
+          - value: 0
+            color: "#128ef3"
+          - value: 19
+            color: "#18820a"
+          - value: 25
+            color: "#c9210e"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.lumi_lumi_weather_humidity_2
+        align_icon: left
+        align_state: center
+        name: "Humidity"
+        hours_to_show: 24
+        color_thresholds_transition: smooth
+        hold_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: true
+        color_thresholds:
+          - value: 0
+            color: "#c9210e"
+          - value: 39
+            color: "#18820a"
+          - value: 61
+            color: "#c9210e"
 
-  - type: 'custom:button-card'
+  - type: "custom:button-card"
     template: card_title
     label: "Geräte"
 
@@ -138,30 +138,32 @@ cards:
       - type: "custom:button-card"
         template: card_media_player
         entity: media_player.65pus8507_12_2
-        tap_action: 
+        tap_action:
           action: navigate
           navigation_path: "tv_remote"
         variables:
-          ulm_card_media_player_name : TV
+          ulm_card_media_player_name: TV
           ulm_card_media_player_icon: mdi:television
+          ulm_card_media_player_collapsible: true
+          ulm_card_media_player_enable_art: true
           ulm_card_media_player_enable_controls: true
           ulm_card_media_player_enable_volume_buttons: true
-          ulm_card_media_player_collapsible: true
-          ulm_card_media_player_more_info: true
-          ulm_card_media_player_force_background_color: blue
-          ulm_card_media_player_color: blue
           ulm_card_media_player_enable_popup: true
+          ulm_card_media_player_more_info: true
+          ulm_card_media_player_power_button: true
       - type: "custom:button-card"
         template: card_media_player
         entity: media_player.wohnzimmer
         variables:
-          ulm_card_light_icon: mdi:speaker
-          ulm_card_light_name: 'Wohnzimmer Box'
-          ulm_card_light_enable_collapse: true
-          ulm_card_light_enable_slider: true
-          ulm_card_light_enable_color: true
-          ulm_card_light_force_background_color: true
-          ulm_card_light_enable_popup_tap: true
+          ulm_card_media_player_icon: mdi:speaker
+          ulm_card_media_player_name: "Wohnzimmer Box"
+          ulm_card_media_player_collapsible: true
+          ulm_card_media_player_enable_art: true
+          ulm_card_media_player_enable_controls: true
+          ulm_card_media_player_enable_volume_buttons: true
+          ulm_card_media_player_enable_popup: true
+          ulm_card_media_player_more_info: true
+          ulm_card_media_player_power_button: true
 
   - type: horizontal-stack
     cards:
@@ -173,13 +175,13 @@ cards:
           ulm_card_vacuum_room_icon: mdi:robot-vacuum
           ulm_card_vacuum_camera_toggle: true
 
-  - type: 'custom:button-card'
+  - type: "custom:button-card"
     template: card_title
     label: "Sensoren"
 
   - type: horizontal-stack
     cards:
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_binary_sensor_alert
         entity: binary_sensor.alfred_bin_full
         variables:
@@ -188,7 +190,7 @@ cards:
           ulm_card_binary_sensor_alert_name: "Alfred ist voll"
           ulm_card_binary_sensor_alert_icon: mdi:delete-variant
           ulm_card_binary_sensor_alert_color: blue
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.alfred_battery_level
         variables:
@@ -200,7 +202,7 @@ cards:
 
   - type: horizontal-stack
     cards:
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.lumi_lumi_weather_battery_2
         variables:

@@ -76,13 +76,13 @@ cards:
         template: card_media_player
         entity: media_player.googlenest1
         variables:
-          ulm_card_media_player_name : "Google Nest"
-          ulm_card_media_player_icon: mdi:speaker
-          ulm_card_light_enable_collapse: true
-          ulm_card_light_enable_slider: true
-          ulm_card_light_enable_color: true
-          ulm_card_light_force_background_color: true
-          ulm_card_light_enable_popup_tap: true
+          ulm_card_media_player_collapsible: true
+          ulm_card_media_player_enable_art: true
+          ulm_card_media_player_enable_controls: true
+          ulm_card_media_player_enable_volume_buttons: true
+          ulm_card_media_player_enable_popup: true
+          ulm_card_media_player_more_info: true
+          ulm_card_media_player_power_button: true
 
   - type: 'custom:button-card'
     template: card_title
