@@ -406,7 +406,7 @@
         entity_id:
         - sensor.alfred_battery_level
         - sensor.handy_bene_battery_level
-        - sensor.huaweihandy_akkufullstand
+        - sensor.iphone_von_julia_battery_level
       actions:
       - service: notify.notify
         data:
