@@ -73,7 +73,7 @@ cards:
           ulm_card_person_entity: person.julia
           ulm_card_person_use_entity_picture: true
           ulm_card_person_icon: mdi:face-woman
-          ulm_card_person_battery: sensor.huaweihandy_akkufullstand
+          ulm_card_person_battery: sensor.iphone_von_julia_battery_level
 
   - type: "custom:button-card"
     template: card_title
