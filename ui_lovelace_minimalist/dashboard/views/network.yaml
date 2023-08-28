@@ -21,6 +21,10 @@ cards:
       ulm_chip_mdi_icon_state_icon: mdi:clock-check
       ulm_chip_mdi_icon_state_icon_color: grey
 
+  - type: "custom:button-card"
+    template: card_title
+    label: "Server"
+
   - type: "horizontal-stack"
     cards:
       - type: custom:mini-graph-card
@@ -133,6 +137,11 @@ cards:
             color: "#ad5d07"
           - value: 90
             color: "#c9210e"
+
+  - type: "custom:button-card"
+    template: card_title
+    label: "Batterien"
+
   - type: "horizontal-stack"
     cards: 
       - type: 'custom:button-card'
