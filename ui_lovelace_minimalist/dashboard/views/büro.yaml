@@ -8,64 +8,64 @@ cards:
 
   - type: "horizontal-stack"
     cards:
-    - type: custom:mini-graph-card
-      entities:
-        - sensor.lumi_lumi_weather_temperature
-      align_icon: left
-      align_state: center
-      name: 'Temperatur'
-      hours_to_show: 24
-      color_thresholds_transition: smooth
-      hold_action: 
-        action: more-info
-      show:
-        fill: fade
-        state: true
-        name: true
-        legend: true
-        icon: true
-        labels: false
-        icon_adaptive_color: true
-        name_adaptive_color: true
-        extrema: false
-        average: true
-      color_thresholds:
-        - value: 0
-          color: "#128ef3"
-        - value: 19
-          color: "#18820a"
-        - value: 25
-          color: "#c9210e"
-    - type: custom:mini-graph-card
-      entities:
-        - sensor.lumi_lumi_weather_humidity
-      align_icon: left
-      align_state: center
-      name: 'Humidity'
-      hours_to_show: 24
-      color_thresholds_transition: smooth
-      hold_action: 
-        action: more-info
-      show:
-        fill: fade
-        state: true
-        name: true
-        legend: true
-        icon: true
-        labels: false
-        icon_adaptive_color: true
-        name_adaptive_color: true
-        extrema: false
-        average: true
-      color_thresholds:
-        - value: 0
-          color: "#c9210e"
-        - value: 39
-          color: "#18820a"
-        - value: 61
-          color: "#c9210e"
-      
-  - type: 'custom:button-card'
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.lumi_lumi_weather_temperature
+        align_icon: left
+        align_state: center
+        name: "Temperatur"
+        hours_to_show: 24
+        color_thresholds_transition: smooth
+        hold_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: true
+        color_thresholds:
+          - value: 0
+            color: "#128ef3"
+          - value: 19
+            color: "#18820a"
+          - value: 25
+            color: "#c9210e"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.lumi_lumi_weather_humidity
+        align_icon: left
+        align_state: center
+        name: "Humidity"
+        hours_to_show: 24
+        color_thresholds_transition: smooth
+        hold_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: true
+        color_thresholds:
+          - value: 0
+            color: "#c9210e"
+          - value: 39
+            color: "#18820a"
+          - value: 61
+            color: "#c9210e"
+
+  - type: "custom:button-card"
     template: card_title
     label: "Geräte"
 
@@ -94,7 +94,7 @@ cards:
           ulm_card_light_force_background_color: true
           ulm_card_light_enable_popup_tap: true
 
-  - type: 'custom:button-card'
+  - type: "custom:button-card"
     template: card_title
     label: "Sensoren"
 
@@ -104,12 +104,12 @@ cards:
         template: card_binary_sensor_alert
         entity: sensor.benedikt_pc_sessionstate
         variables:
-          ulm_show_last_changed: true
+          ulm_card_binary_sensor_show_last_changed: true
           ulm_card_binary_sensor_alert_name: PC-Benedikt
           ulm_card_binary_sensor_alert_icon: mdi:monitor
           ulm_card_binary_sensor_alert_color: blue
           ulm_card_binary_sensor_alert_force_background_color: blue
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.lumi_lumi_weather_battery
         variables:

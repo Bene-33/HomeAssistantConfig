@@ -133,37 +133,36 @@ cards:
           ulm_card_light_force_background_color: true
           ulm_card_light_enable_popup_tap: true
 
-  - type: horizontal-stack
-    cards:
-      - type: "custom:button-card"
-        template: card_media_player
-        entity: media_player.65pus8507_12_2
-        tap_action:
-          action: navigate
-          navigation_path: "tv_remote"
-        variables:
-          ulm_card_media_player_name: TV
-          ulm_card_media_player_icon: mdi:television
-          ulm_card_media_player_collapsible: true
-          ulm_card_media_player_enable_art: true
-          ulm_card_media_player_enable_controls: true
-          ulm_card_media_player_enable_volume_buttons: true
-          ulm_card_media_player_enable_popup: true
-          ulm_card_media_player_more_info: true
-          ulm_card_media_player_power_button: true
-      - type: "custom:button-card"
-        template: card_media_player
-        entity: media_player.wohnzimmer
-        variables:
-          ulm_card_media_player_icon: mdi:speaker
-          ulm_card_media_player_name: "Wohnzimmer Box"
-          ulm_card_media_player_collapsible: true
-          ulm_card_media_player_enable_art: true
-          ulm_card_media_player_enable_controls: true
-          ulm_card_media_player_enable_volume_buttons: true
-          ulm_card_media_player_enable_popup: true
-          ulm_card_media_player_more_info: true
-          ulm_card_media_player_power_button: true
+  - type: "custom:button-card"
+    template: card_media_player
+    entity: media_player.wohnzimmer
+    variables:
+      ulm_card_media_player_icon: mdi:speaker
+      ulm_card_media_player_name: "Wohnzimmer Box"
+      ulm_card_media_player_collapsible: true
+      ulm_card_media_player_enable_art: true
+      ulm_card_media_player_enable_controls: true
+      ulm_card_media_player_enable_volume_buttons: true
+      ulm_card_media_player_enable_popup: true
+      ulm_card_media_player_more_info: true
+      ulm_card_media_player_power_button: true
+
+  - type: "custom:button-card"
+    template: card_media_player
+    entity: media_player.65pus8507_12_2
+    tap_action:
+      action: navigate
+      navigation_path: "tv_remote"
+    variables:
+      ulm_card_media_player_name: TV
+      ulm_card_media_player_icon: mdi:television
+      ulm_card_media_player_collapsible: true
+      ulm_card_media_player_enable_art: true
+      ulm_card_media_player_enable_controls: true
+      ulm_card_media_player_enable_volume_buttons: true
+      ulm_card_media_player_enable_popup: true
+      ulm_card_media_player_more_info: true
+      ulm_card_media_player_power_button: true
 
   - type: horizontal-stack
     cards:
@@ -186,7 +185,7 @@ cards:
         entity: binary_sensor.alfred_bin_full
         variables:
           ulm_card_binary_sensor_alert: true
-          ulm_show_last_changed: true
+          ulm_card_binary_sensor_show_last_changed: true
           ulm_card_binary_sensor_alert_name: "Alfred ist voll"
           ulm_card_binary_sensor_alert_icon: mdi:delete-variant
           ulm_card_binary_sensor_alert_color: blue
