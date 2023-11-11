@@ -44,10 +44,10 @@ cards:
         name: Hassio
         color: "purple"
       entity_5:
-        nav: "plants"
-        icon: "mdi:sprout"
-        name: Plants
-        color: "green"
+        nav: "lab"
+        icon: "mdi:flask-round-bottom"
+        name: Lab
+        color: "pink"
 
   - type: horizontal-stack
     cards:
