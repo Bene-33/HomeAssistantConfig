@@ -5,3 +5,22 @@ cards:
     template: chip_back
     variables:
       ulm_chip_back_path: home
+
+  - type: "custom:vacuum-card"
+    entity: vacuum.alfred
+    stats:
+      default:
+        - entity_id: sensor.alfred_durchschnittliche_missionszeit
+          unit: min/Vorgang
+          subtitle: Durchschnitt
+        - entity_id: sensor.alfred_missionen_insgesamt
+          unit: x
+          subtitle: gereinigt
+        - entity_id: sensor.alfred_gesamtreinigungszeit
+          unit: h
+          subtitle: gesamte Reinigungszeit
+      cleaning:
+        - entity_id: vacuum.alfred.status(cleaing)
+          value_template: '{{(value | float )}}'
+          unit: min
+          subtitle: Reinigung
