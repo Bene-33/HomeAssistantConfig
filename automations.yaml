@@ -427,42 +427,6 @@
       entity_id: scene.gaming_licht_aus
     metadata: {}
   mode: single
-- id: '1682762966505'
-  alias: Update Verfügbar action
-  description: ''
-  use_blueprint:
-    path: mdegat01/update_notifications.yaml
-    input:
-      reminder_hours: '3'
-      update_entities:
-      - update.calibre_update
-      - update.calibre_web_update
-      - update.cloudflared_update
-      - update.emqx_update
-      - update.grafana_update
-      - update.home_assistant_core_update
-      - update.home_assistant_google_drive_backup_update
-      - update.home_assistant_operating_system_update
-      - update.home_assistant_supervisor_update
-      - update.mariadb_update
-      - update.matter_server_update
-      - update.samba_share_update
-      - update.spotify_connect_update
-      - update.ssh_web_terminal_update
-      - update.studio_code_server_update
-      - update.tandoor_recipes_update
-      - update.vaultwarden_bitwarden_update
-      - update.piper_update
-      - update.whisper_update
-      - update.pgadmin4_update
-      - update.timescaledb_update
-      send_to_ha: true
-      take_backup: false
-      run_config_check: false
-      mobile_app_device: 9c6f616e77139523b879c5204d62a9bd
-      only_after: 07:00:00
-      only_before: '20:00:00'
-      mobile_app_device_2: 5c3767da7f2f55992a32daea6d9d0b06
 - id: '1682763467689'
   alias: Batterien low
   description: ''
@@ -648,3 +612,40 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1700080552074'
+  alias: Update notifications
+  description: ''
+  use_blueprint:
+    path: mdegat01/update_notifications.yaml
+    input:
+      update_entities:
+      - update.ssh_web_terminal_update
+      - update.aircast_update
+      - update.airsonos_update
+      - update.calibre_update
+      - update.calibre_web_update
+      - update.cloudflared_update
+      - update.emqx_update
+      - update.home_assistant_core_update
+      - update.grafana_update
+      - update.home_assistant_google_drive_backup_update
+      - update.home_assistant_operating_system_update
+      - update.home_assistant_supervisor_update
+      - update.mariadb_update
+      - update.matter_server_update
+      - update.openwakeword_update
+      - update.piper_update
+      - update.pgadmin4_update
+      - update.samba_share_update
+      - update.spotify_connect_update
+      - update.tandoor_recipes_update
+      - update.studio_code_server_update
+      - update.timescaledb_update
+      - update.vaultwarden_bitwarden_update
+      - update.whisper_update
+      mobile_app_device: 9c6f616e77139523b879c5204d62a9bd
+      send_to_ha: true
+      take_backup: false
+      only_after: 07:00:00
+      only_before: '20:00:00'
+      mobile_app_device_2: 9c6f616e77139523b879c5204d62a9bd
