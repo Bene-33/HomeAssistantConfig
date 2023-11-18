@@ -1,4 +1,4 @@
-
-  db_url: !secret timescaledb
-  chunk_time_interval: 2592000000000
-
+db_url: !secret timescaledb
+include:
+  domains:
+    - sensor

@@ -12,8 +12,14 @@
 !.gitignore
 !/ui_lovelace_minimalist/
 !/ui_lovelace_minimalist/**
-!/packages/
-!/packages/**
+!*.md
 
-#einzelne Dateien ignorieren
+#einzelne Dateien/Ordner ignorieren
 secrets.yaml
+home-assistant.log
+home-assistant-rollback.log
+
+.ssh
+.storage
+.cloud
+

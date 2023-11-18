@@ -1,12 +1,9 @@
-
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-
-
 
 #!include separate config files
 recorder: !include recorder.yaml
@@ -22,6 +19,3 @@ homeassistant:
 
 frontend:
   themes: !include_dir_merge_named themes
-
-
-
