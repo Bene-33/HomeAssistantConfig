@@ -73,7 +73,7 @@ cards:
     cards:
       - type: "custom:button-card"
         template: card_light
-        entity: light.pc_licht
+        entity: light.pc_licht_2
         variables:
           ulm_card_light_icon: hue:lightstrip-tv
           ulm_card_light_name: PC Licht

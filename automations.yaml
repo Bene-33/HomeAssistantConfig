@@ -619,7 +619,6 @@
     path: mdegat01/update_notifications.yaml
     input:
       update_entities:
-      - update.ssh_web_terminal_update
       - update.aircast_update
       - update.airsonos_update
       - update.calibre_update
@@ -643,6 +642,7 @@
       - update.timescaledb_update
       - update.vaultwarden_bitwarden_update
       - update.whisper_update
+      - update.terminal_ssh_update
       mobile_app_device: 9c6f616e77139523b879c5204d62a9bd
       send_to_ha: true
       take_backup: false

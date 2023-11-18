@@ -6,7 +6,7 @@ cards:
     variables:
       ulm_chip_back_path: home
 
-  - type: 'custom:button-card'
+  - type: "custom:button-card"
     template: card_title
     label: "Wohnzimmer"
 
@@ -74,7 +74,7 @@ cards:
           ulm_card_light_force_background_color: true
           ulm_card_light_enable_popup_tap: true
 
-  - type: 'custom:button-card'
+  - type: "custom:button-card"
     template: card_title
     label: "Büro"
 
@@ -82,7 +82,7 @@ cards:
     cards:
       - type: "custom:button-card"
         template: card_light
-        entity: light.pc_licht
+        entity: light.pc_licht_2
         variables:
           ulm_card_light_icon: hue:lightstrip-tv
           ulm_card_light_name: PC Licht

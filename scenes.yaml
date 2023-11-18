@@ -182,17 +182,17 @@
   name: PC Licht an
   entities:
     light.smart_ambient_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
       - brightness
       - color_temp
       - hs
-      icon: hue:go
-      friendly_name: Smart Ambient Light
-      supported_features: 0
       color_mode: color_temp
       brightness: 249
+      color_temp_kelvin: 2000
       color_temp: 500
       hs_color:
       - 30.601
@@ -204,24 +204,23 @@
       xy_color:
       - 0.599
       - 0.382
+      icon: hue:go
+      friendly_name: Smart Ambient Light
+      supported_features: 0
       state: 'on'
-    light.pc_licht:
+    light.pc_licht_2:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9000
       min_mireds: 111
       max_mireds: 500
       supported_color_modes:
+      - brightness
       - color_temp
-      - hs
-      rate_limit_total: 100
-      rate_limit_remaining: 45
-      rate_limit_reset_seconds: -1662833810.21
-      rate_limit_reset: '1970-01-01T01:00:00'
-      rate_limit_on: 5
-      manufacturer: Govee
-      model: H6056
-      friendly_name: PC Licht
-      supported_features: 19
-      color_mode: hs
-      brightness: 176
+      - rgb
+      color_mode: rgb
+      brightness: 173
+      color_temp_kelvin:
+      color_temp:
       hs_color:
       - 29.412
       - 100
@@ -232,6 +231,13 @@
       xy_color:
       - 0.615
       - 0.372
+      http_enabled: true
+      ble_enabled: false
+      lan_enabled: true
+      friendly_name: PC Licht
+      supported_features: 0
+      update_status: ok at Sat Nov 18 22:20:07 2023
+      timeout_count: 0
       state: 'on'
   metadata: {}
   icon: mdi:microsoft-xbox-controller
@@ -239,31 +245,48 @@
   name: PC Licht aus
   entities:
     light.smart_ambient_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       supported_color_modes:
       - brightness
       - color_temp
       - hs
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
       icon: hue:go
       friendly_name: Smart Ambient Light
       supported_features: 0
       state: 'off'
-    light.pc_licht:
+    light.pc_licht_2:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9000
       min_mireds: 111
       max_mireds: 500
       supported_color_modes:
+      - brightness
       - color_temp
-      - hs
-      rate_limit_total: 100
-      rate_limit_remaining: 50
-      rate_limit_reset_seconds: -1662833790.22
-      rate_limit_reset: '1970-01-01T01:00:00'
-      rate_limit_on: 5
-      manufacturer: Govee
-      model: H6056
+      - rgb
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      http_enabled: true
+      ble_enabled: false
+      lan_enabled: true
       friendly_name: PC Licht
-      supported_features: 19
+      supported_features: 0
+      update_status: ok at Sat Nov 18 22:20:07 2023
+      timeout_count: 0
       state: 'off'
   metadata: {}
   icon: mdi:microsoft-xbox-controller-off
