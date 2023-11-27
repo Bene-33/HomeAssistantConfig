@@ -510,19 +510,6 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
-- id: '1683997207095'
-  alias: Korallenkaktus gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.korallenkaktus
-      plant_image: /local/bilder/korallenkaktus.jpg
-      reminder_time: '18:00:00'
-      notification_title: Korallenkaktus gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
 - id: '1683997433065'
   alias: Bohemian Bravour gießen
   description: ''
