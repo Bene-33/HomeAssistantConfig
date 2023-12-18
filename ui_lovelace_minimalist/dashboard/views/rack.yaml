@@ -164,7 +164,7 @@ cards:
     cards: 
     - type: 'custom:button-card'
       template: card_battery
-      entity: sensor.alfred_battery_level
+      entity: sensor.alfred_batterie
       variables:
         ulm_card_battery_battery_level_danger: 30
         ulm_card_battery_battery_level_warning: 80
