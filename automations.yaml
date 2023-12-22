@@ -445,6 +445,7 @@
           data:
           title: Batterien tauschen
           message: '{{sensors}}'
+      threshold: 10
 - id: '1682763613807'
   alias: Kontaktlinsen wechseln
   description: ''
