@@ -420,6 +420,10 @@
     entity_id:
     - sensor.benedikt_pc_sessionstate
     to: unavailable
+  - platform: state
+    entity_id:
+    - sensor.benedikt_pc_sessionstate
+    to: Locked
   condition: []
   action:
   - service: scene.turn_on
