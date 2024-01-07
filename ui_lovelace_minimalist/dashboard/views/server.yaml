@@ -1,11 +1,10 @@
-title: "Rack"
-path: "rack"
+title: "Server"
+path: "server"
 cards:
   - type: "custom:button-card"
     template: chip_back
     variables:
       ulm_chip_back_path: home
-
 
   - type: "custom:button-card"
     template: chip_mdi_icon_state
@@ -32,9 +31,9 @@ cards:
           - sensor.processor_use_percent
         align_icon: left
         align_state: center
-        name: 'CPU Auslastung'
+        name: "CPU Auslastung"
         hours_to_show: 24
-        hold_action: 
+        hold_action:
           action: more-info
         show:
           fill: fade
@@ -54,33 +53,6 @@ cards:
             color: "#ad5d07"
           - value: 60
             color: "#c9210e"
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.processor_temperature
-        align_icon: left
-        align_state: center
-        name: 'CPU Temperatur'
-        hours_to_show: 24
-        hold_action: 
-          action: more-info
-        show:
-          fill: fade
-          state: true
-          name: true
-          legend: true
-          icon: true
-          labels: false
-          icon_adaptive_color: true
-          name_adaptive_color: true
-          extrema: false
-          average: true
-        color_thresholds:
-          - value: 0
-            color: "#18820a"
-          - value: 60
-            color: "#ad5d07"
-          - value: 85
-            color: "#c9210e"
   - type: "horizontal-stack"
     cards:
       - type: custom:mini-graph-card
@@ -88,9 +60,9 @@ cards:
           - sensor.memory_free
         align_icon: left
         align_state: center
-        name: 'RAM Frei'
+        name: "RAM Frei"
         hours_to_show: 24
-        hold_action: 
+        hold_action:
           action: more-info
         show:
           fill: fade
@@ -115,9 +87,9 @@ cards:
           - sensor.disk_use_percent
         align_icon: left
         align_state: center
-        name: 'Speicher'
+        name: "Speicher"
         hours_to_show: 24
-        hold_action: 
+        hold_action:
           action: more-info
         show:
           fill: fade
@@ -143,8 +115,8 @@ cards:
     label: "Batterien"
 
   - type: "horizontal-stack"
-    cards: 
-      - type: 'custom:button-card'
+    cards:
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.handy_bene_battery_level
         variables:
@@ -152,7 +124,7 @@ cards:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 80
           ulm_card_battery_name: Bene Handy
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.iphone_von_julia_battery_level
         variables:
@@ -161,24 +133,24 @@ cards:
           ulm_card_battery_battery_level_warning: 80
           ulm_card_battery_name: Julia Iphone
   - type: "horizontal-stack"
-    cards: 
-    - type: 'custom:button-card'
-      template: card_battery
-      entity: sensor.alfred_batterie
-      variables:
-        ulm_card_battery_battery_level_danger: 30
-        ulm_card_battery_battery_level_warning: 80
-        ulm_card_battery_name: Alfred 
+    cards:
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.alfred_batterie
+        variables:
+          ulm_card_battery_battery_level_danger: 30
+          ulm_card_battery_battery_level_warning: 80
+          ulm_card_battery_name: Alfred
   - type: "horizontal-stack"
-    cards: 
-      - type: 'custom:button-card'
+    cards:
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.lumi_lumi_weather_battery_2
         variables:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 80
           ulm_card_battery_name: Thermostat Wonzimmer
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.lumi_lumi_weather_battery_4
         variables:
@@ -186,19 +158,18 @@ cards:
           ulm_card_battery_battery_level_warning: 80
           ulm_card_battery_name: Thermostat Bad
   - type: "horizontal-stack"
-    cards: 
-      - type: 'custom:button-card'
+    cards:
+      - type: "custom:button-card"
         template: card_battery
         entity: sensor.lumi_lumi_weather_battery_3
         variables:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 80
           ulm_card_battery_name: Thermostat Schlafzimmer
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_battery
-        entity: sensor.lumi_lumi_weather_battery 
+        entity: sensor.lumi_lumi_weather_battery
         variables:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 80
           ulm_card_battery_name: Thermostat Büro
-

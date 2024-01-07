@@ -39,9 +39,9 @@ cards:
         name: Tanken
         color: "red"
       entity_4:
-        nav: "rack"
+        nav: "server"
         icon: "mdi:raspberry-pi"
-        name: rack
+        name: Server
         color: "purple"
       entity_5:
         nav: "lab"

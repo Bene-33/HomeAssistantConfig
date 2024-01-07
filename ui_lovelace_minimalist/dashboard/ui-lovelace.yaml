@@ -14,7 +14,7 @@ views:
   - !include views/küche.yaml
   - !include views/keller.yaml
   - !include views/lights.yaml
-  - !include views/rack.yaml
+  - !include views/server.yaml
   - !include views/benzinpreise.yaml
   - !include views/lab.yaml
   - !include views/benedikt.yaml
