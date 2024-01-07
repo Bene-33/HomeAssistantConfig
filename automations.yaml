@@ -614,7 +614,6 @@
       - update.aircast_update
       - update.airsonos_update
       - update.calibre_update
-      - update.calibre_web_update
       - update.cloudflared_update
       - update.emqx_update
       - update.home_assistant_core_update
@@ -635,6 +634,37 @@
       - update.vaultwarden_bitwarden_update
       - update.whisper_update
       - update.terminal_ssh_update
+      - update.auto_entities_update
+      - update.bar_card_update
+      - update.browser_mod_update
+      - update.button_card_update
+      - update.calibre_web_update
+      - update.card_mod_update
+      - update.datetime_card_update
+      - update.deutscher_wetterdienst_update
+      - update.flipdown_timer_card_update
+      - update.govee_lan_control_update
+      - update.govee_update
+      - update.ha_dashboard_update
+      - update.hacs_update
+      - update.hass_hue_icons_update
+      - update.hass_agent_update
+      - update.layout_card_update
+      - update.light_entity_card_update
+      - update.ltss_update
+      - update.mini_media_player_update
+      - update.mini_graph_card_update
+      - update.my_cards_bundle_update
+      - update.philips_tv_remote_update
+      - update.simple_weather_card_update
+      - update.spotcast_update
+      - update.state_switch_update
+      - update.team_tracker_card_update
+      - update.team_tracker_update
+      - update.ui_lovelace_minimalist_update
+      - update.watchman_update
+      - update.weather_radar_card_update
+      - update.ytube_music_player_update
       mobile_app_device: 9c6f616e77139523b879c5204d62a9bd
       send_to_ha: true
       take_backup: false
