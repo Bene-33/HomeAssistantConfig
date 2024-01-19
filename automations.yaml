@@ -116,14 +116,9 @@
   - type: turned_on
     platform: device
     device_id: 57586eb91c79551e919a2a78245134c3
-    entity_id: binary_sensor.alfred_bin_full
+    entity_id: b6ff7b2a4729350493dff89a80b47fc5
     domain: binary_sensor
-  condition:
-  - type: is_on
-    condition: device
-    device_id: 57586eb91c79551e919a2a78245134c3
-    entity_id: binary_sensor.alfred_bin_full
-    domain: binary_sensor
+  condition: []
   action:
   - service: notify.notify
     data:
@@ -145,7 +140,7 @@
       - type: is_on
         condition: device
         device_id: 57586eb91c79551e919a2a78245134c3
-        entity_id: binary_sensor.alfred_bin_full
+        entity_id: b6ff7b2a4729350493dff89a80b47fc5
         domain: binary_sensor
       sequence:
       - delay:
@@ -431,25 +426,6 @@
       entity_id: scene.gaming_licht_aus
     metadata: {}
   mode: single
-- id: '1682763467689'
-  alias: Batterien low
-  description: ''
-  use_blueprint:
-    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
-    input:
-      time: '17:00:00'
-      exclude:
-        entity_id:
-        - sensor.alfred_battery_level
-        - sensor.handy_bene_battery_level
-        - sensor.iphone_von_julia_battery_level
-      actions:
-      - service: notify.notify
-        data:
-          data:
-          title: Batterien tauschen
-          message: '{{sensors}}'
-      threshold: 10
 - id: '1682763613807'
   alias: Kontaktlinsen wechseln
   description: ''
@@ -515,19 +491,6 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
-- id: '1683997433065'
-  alias: Bohemian Bravour gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.bohemian_bravour
-      notification_title: Bohemian Bravour gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      plant_image: /local/bilder/bohemian_bravour.jpg
-      reminder_time: '18:00:00'
 - id: '1683997588747'
   alias: Grünlilie gießen
   description: ''
@@ -671,3 +634,21 @@
       only_after: 07:00:00
       only_before: '20:00:00'
       mobile_app_device_2: 9c6f616e77139523b879c5204d62a9bd
+- id: '1705495382555'
+  alias: Batteries low notification
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      threshold: 10
+      time: '17:00:00'
+      exclude:
+        entity_id:
+        - sensor.alfred_batterie
+        - sensor.iphone_von_julia_battery_level
+        - sensor.handy_bene_battery_level
+      actions:
+      - service: notify.notify
+        metadata: {}
+        data:
+          message: '{{sensors}}'
