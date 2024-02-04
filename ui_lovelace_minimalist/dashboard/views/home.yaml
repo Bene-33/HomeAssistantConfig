@@ -109,7 +109,7 @@ cards:
           action: navigate
           navigation_path: "büro"
         variables:
-          ulm_custom_card_esh_room_light_entity: light.pc_licht_2
+          ulm_custom_card_esh_room_light_entity: light.pc_licht
           ulm_card_light_enable_popup: true
         label: >
           [[[
