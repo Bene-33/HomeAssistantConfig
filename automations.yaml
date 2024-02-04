@@ -24,33 +24,6 @@
         message: 'Fehler beheben '
         title: 'Googledrive Backup Fehler '
   mode: single
-- id: '1619640116135'
-  alias: 'Alfred Staubsaugen '
-  description: ''
-  trigger:
-  - platform: time
-    at: '10:00:00'
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-    before: 00:00:00
-    after: 00:00:00
-  - condition: not
-    conditions:
-    - condition: state
-      entity_id: person.benedikt
-      state: home
-  action:
-  - device_id: 57586eb91c79551e919a2a78245134c3
-    domain: vacuum
-    entity_id: vacuum.alfred
-    type: clean
-  mode: single
 - id: '1620231491485'
   alias: Alfred benötigt Hilfe
   description: ''
@@ -108,57 +81,6 @@
   condition: []
   action:
   - scene: scene.tv_licht_aus
-  mode: single
-- id: '1621004279757'
-  alias: Alfred muss geleert werden
-  description: ''
-  trigger:
-  - type: turned_on
-    platform: device
-    device_id: 57586eb91c79551e919a2a78245134c3
-    entity_id: b6ff7b2a4729350493dff89a80b47fc5
-    domain: binary_sensor
-  condition: []
-  action:
-  - service: notify.notify
-    data:
-      title: Alfred leeren
-      message: 'Staubbehälter leeren '
-  - if:
-    - condition: device
-      device_id: 72688f69e98af530dd7c017b970515aa
-      domain: media_player
-      entity_id: media_player.benedikt_pc
-      type: is_on
-    then:
-    - service: notify.benedikt_pc
-      data:
-        message: 'Staubbehälter leeren '
-        title: Alfred leeren
-  - repeat:
-      while:
-      - type: is_on
-        condition: device
-        device_id: 57586eb91c79551e919a2a78245134c3
-        entity_id: b6ff7b2a4729350493dff89a80b47fc5
-        domain: binary_sensor
-      sequence:
-      - delay:
-          hours: 3
-          minutes: 0
-          seconds: 0
-          milliseconds: 0
-      - service: notify.notify
-        data:
-          message: 'Staubbehälter leeren '
-          title: Alfred leeren
-      - if:
-        - condition: device
-          device_id: 72688f69e98af530dd7c017b970515aa
-          domain: media_player
-          entity_id: media_player.benedikt_pc
-          type: is_on
-        then: []
   mode: single
 - id: '1622209039392'
   alias: 'Alfred reinigen  '
@@ -652,3 +574,94 @@
         metadata: {}
         data:
           message: '{{sensors}}'
+- id: '1707056863595'
+  alias: tägliches Staubsaugen
+  description: ''
+  trigger:
+  - platform: time
+    at: '10:00:00'
+  condition:
+  - condition: or
+    conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.benedikt
+        state: home
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.julia
+        state: home
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - fri
+    - thu
+  action:
+  - device_id: 57586eb91c79551e919a2a78245134c3
+    domain: vacuum
+    entity_id: b0e712f1340d600b84c8042497091526
+    type: clean
+  mode: single
+- id: '1707057241749'
+  alias: Alfred leeren
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 57586eb91c79551e919a2a78245134c3
+    entity_id: b6ff7b2a4729350493dff89a80b47fc5
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.notify
+    metadata: {}
+    data:
+      message: Staubbehälter leeren
+      title: Alfred leeren
+  - if:
+    - condition: device
+      device_id: 72688f69e98af530dd7c017b970515aa
+      domain: media_player
+      entity_id: 6f954d7ade7da85222f844e80770f53a
+      type: is_on
+    then:
+    - service: notify.benedikt_pc
+      metadata: {}
+      data:
+        title: Alfred leeren
+        message: Staubbehälter leeren
+  - repeat:
+      sequence:
+      - delay:
+          hours: 3
+          minutes: 0
+          seconds: 0
+          milliseconds: 0
+      - service: notify.notify
+        metadata: {}
+        data:
+          message: Staubbehälter leeren
+          title: Alfred leeren
+      - if:
+        - condition: device
+          device_id: 72688f69e98af530dd7c017b970515aa
+          domain: media_player
+          entity_id: 6f954d7ade7da85222f844e80770f53a
+          type: is_on
+        then:
+        - service: notify.benedikt_pc
+          metadata: {}
+          data:
+            title: Alfred leeren
+            message: Staubbehälter leeren
+      while:
+      - type: is_on
+        condition: device
+        device_id: 57586eb91c79551e919a2a78245134c3
+        entity_id: b6ff7b2a4729350493dff89a80b47fc5
+        domain: binary_sensor
+  mode: single
