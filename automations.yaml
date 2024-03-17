@@ -29,7 +29,8 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: vacuum.alfred
+    entity_id:
+    - vacuum.alfred
     from: cleaning
     to: error
   condition: []
@@ -574,14 +575,14 @@
         metadata: {}
         data:
           message: '{{sensors}}'
-- id: '1707056863595'
+- id: '1709099857571'
   alias: tägliches Staubsaugen
   description: ''
   trigger:
   - platform: time
     at: '10:00:00'
   condition:
-  - condition: or
+  - condition: and
     conditions:
     - condition: not
       conditions:
@@ -593,6 +594,7 @@
       - condition: state
         entity_id: person.julia
         state: home
+    enabled: false
   - condition: time
     weekday:
     - mon
@@ -601,13 +603,14 @@
     - fri
     - thu
   action:
-  - device_id: 57586eb91c79551e919a2a78245134c3
-    domain: vacuum
-    entity_id: b0e712f1340d600b84c8042497091526
-    type: clean
+  - service: vacuum.start
+    metadata: {}
+    data: {}
+    target:
+      device_id: 57586eb91c79551e919a2a78245134c3
   mode: single
-- id: '1707057241749'
-  alias: Alfred leeren
+- id: '1709099908284'
+  alias: 'Alfred leeren '
   description: ''
   trigger:
   - type: turned_on
@@ -665,3 +668,17 @@
         entity_id: b6ff7b2a4729350493dff89a80b47fc5
         domain: binary_sensor
   mode: single
+- id: '1709578037322'
+  alias: Elefantenfuß gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.elefantenbaum
+      reminder_time: '18:00:00'
+      interval_days: 14
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+      plant_image: /local/bilder/elefantenfuß.jpg
+      notification_title: Elefantenfuß gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt

@@ -191,7 +191,7 @@
       - color_temp
       - rgb
       color_mode: color_temp
-      brightness: 216
+      brightness: 255
       color_temp_kelvin: 2000
       color_temp: 500
       hs_color:
@@ -207,10 +207,10 @@
       http_enabled: true
       ble_enabled: false
       lan_enabled: true
+      update_status: ok at Wed Mar  6 18:55:15 2024
+      timeout_count: 0
       friendly_name: PC Licht
       supported_features: 0
-      update_status: ok at Sun Feb  4 15:21:39 2024
-      timeout_count: 0
       state: 'on'
   metadata: {}
   icon: mdi:microsoft-xbox-controller
