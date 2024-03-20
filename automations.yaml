@@ -594,7 +594,7 @@
       - condition: state
         entity_id: person.julia
         state: home
-    enabled: false
+    enabled: true
   - condition: time
     weekday:
     - mon
