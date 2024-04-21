@@ -4,5 +4,6 @@ ip_ban_enabled: true
 login_attempts_threshold: 5
 
 use_x_forwarded_for: true
+server_port: !secret proxie_port
 trusted_proxies:
 - !secret trusted_proxies
