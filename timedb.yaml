@@ -1,4 +1,0 @@
-db_url: !secret timescaledb
-include:
-  domains:
-    - sensor

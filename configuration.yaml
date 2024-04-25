@@ -12,7 +12,6 @@ http: !include ssl.yaml
 tts: !include google_translate.yaml
 spotcast: !include spotcast.yaml
 template: !include templates.yaml
-ltss: !include timedb.yaml
 
 homeassistant:
   packages: !include_dir_named packages
