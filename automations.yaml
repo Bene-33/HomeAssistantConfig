@@ -143,11 +143,8 @@
     - condition: state
       entity_id: sensor.benedikt_pc_sessionstate
       state: Unlocked
-    then:
-    - service: notify.benedikt_pc
-      data:
-        title: Waschmaschine ist fertig
-        message: Wäsche kann aufgehängt werden
+    then: []
+    enabled: false
   - if:
     - condition: device
       device_id: b2227f95cd200e6eb95585d9dca557f6
@@ -414,19 +411,6 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
-- id: '1683997588747'
-  alias: Grünlilie gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.grunlilie
-      reminder_time: '18:00:00'
-      notification_title: Grünlilie gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      plant_image: /local/bilder/gruenlilie.jpg
 - id: '1683997699028'
   alias: Einblatt gießen
   description: ''
@@ -594,7 +578,7 @@
       - condition: state
         entity_id: person.julia
         state: home
-    enabled: false
+    enabled: true
   - condition: time
     weekday:
     - mon
@@ -682,3 +666,30 @@
       notification_title: Elefantenfuß gießen
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
+- id: '1716304610511'
+  alias: Grünlilie gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.grunlilie
+      plant_image: /local/bilder/guenlilie.jpg
+      reminder_time: '18:00:00'
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+      notification_title: Grünlilie gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+- id: '1716304761834'
+  alias: Zylindrischen Bogenhanf gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.zylindrischer_bogenhanaf
+      plant_image: /local/bilder/zylindrischer_bogenhanf.jpg
+      reminder_time: '18:00:00'
+      interval_days: 28
+      notification_title: Zylindrischen Bogenhanf gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
