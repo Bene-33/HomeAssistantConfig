@@ -22,7 +22,7 @@ cards:
     triggers_update: "input_boolean.minimalist_dropdown"
     variables:
       ulm_card_esh_welcome_collapse: input_boolean.minimalist_dropdown
-      ulm_weather: "weather.openweathermap"
+      ulm_weather: !secret weatherlocation
       entity_1:
         nav: "house"
         icon: "mdi:home"
