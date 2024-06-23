@@ -135,101 +135,67 @@
     to: idle
   condition: []
   action:
-  - service: notify.notify
-    data:
-      title: Waschmaschine ist fertig
-      message: Wäsche kann aufgehängt werden
-  - if:
-    - condition: state
-      entity_id: sensor.benedikt_pc_sessionstate
-      state: Unlocked
-    then: []
-    enabled: false
-  - if:
-    - condition: device
-      device_id: b2227f95cd200e6eb95585d9dca557f6
-      domain: media_player
-      entity_id: 1743781635d394cd5fe84613d67ec126
-      type: is_playing
-    then:
-    - service: sonos.snapshot
+  - parallel:
+    - service: notify.mobile_app_handy_bene
+      metadata: {}
       data:
-        with_group: true
-        entity_id: media_player.wohnzimmer
-    - service: media_player.play_media
-      target:
-        entity_id: media_player.wohnzimmer
+        message: Wäsche kann aufgehängt werden
+        title: Waschmaschine ist fertig
+    - service: notify.mobile_app_iphone_von_julia
+      metadata: {}
       data:
-        media_content_id: media-source://tts/tts.piper?message=Die+Waschmaschine+ist+fertig.&language=de_DE&voice=de_DE-eva_k-x_low
-        media_content_type: provider
-      metadata:
-        title: Die Waschmaschine ist fertig.
-        thumbnail: https://brands.home-assistant.io/_/tts/logo.png
-        media_class: app
-        children_media_class:
-        navigateIds:
-        - {}
-        - media_content_type: app
-          media_content_id: media-source://tts
-        - media_content_type: provider
-          media_content_id: media-source://tts/tts.piper?message=Die+Waschmaschine+ist+fertig.&language=de_DE&voice=de_DE-eva_k-x_low
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 2
-        milliseconds: 0
-    - service: sonos.restore
-      data:
-        with_group: true
-        entity_id: media_player.wohnzimmer
-    - service: media_player.media_play
-      data: {}
-      target:
-        device_id: b2227f95cd200e6eb95585d9dca557f6
-  - if:
-    - condition: or
-      conditions:
-      - condition: device
-        device_id: b2227f95cd200e6eb95585d9dca557f6
-        domain: media_player
-        entity_id: 1743781635d394cd5fe84613d67ec126
-        type: is_off
-      - condition: device
-        device_id: b2227f95cd200e6eb95585d9dca557f6
-        domain: media_player
-        entity_id: 1743781635d394cd5fe84613d67ec126
-        type: is_idle
-      - condition: device
-        device_id: b2227f95cd200e6eb95585d9dca557f6
-        domain: media_player
-        entity_id: 1743781635d394cd5fe84613d67ec126
-        type: is_paused
-    then:
-    - type: turn_on
-      device_id: b2227f95cd200e6eb95585d9dca557f6
-      entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
-      domain: switch
-    - service: media_player.play_media
-      target:
-        entity_id: media_player.wohnzimmer
-      data:
-        media_content_id: media-source://tts/tts.piper?message=Die+Waschmaschine+ist+fertig.&language=de_DE&voice=de_DE-eva_k-x_low
-        media_content_type: provider
-      metadata:
-        title: Die Waschmaschine ist fertig.
-        thumbnail: https://brands.home-assistant.io/_/tts/logo.png
-        media_class: app
-        children_media_class:
-        navigateIds:
-        - {}
-        - media_content_type: app
-          media_content_id: media-source://tts
-        - media_content_type: provider
-          media_content_id: media-source://tts/tts.piper?message=Die+Waschmaschine+ist+fertig.&language=de_DE&voice=de_DE-eva_k-x_low
-    - type: turn_off
-      device_id: b2227f95cd200e6eb95585d9dca557f6
-      entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
-      domain: switch
+        title: Waschmaschine ist fertig
+        message: Wäsche kann aufgehängt werden
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: media_player.wohnzimmer
+          state: 'off'
+        - condition: state
+          entity_id: media_player.wohnzimmer
+          state: idle
+        - condition: state
+          entity_id: media_player.wohnzimmer
+          state: paused
+      sequence:
+      - service: tts.speak
+        metadata: {}
+        data:
+          cache: true
+          media_player_entity_id: media_player.wohnzimmer
+          message: Die Waschmaschine ist fertig
+        target:
+          entity_id: tts.piper
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: media_player.wohnzimmer
+          state: 'on'
+        - condition: state
+          entity_id: media_player.wohnzimmer
+          state: playing
+      sequence:
+      - service: media_player.media_pause
+        metadata: {}
+        data: {}
+        target:
+          entity_id: media_player.wohnzimmer
+      - service: tts.speak
+        metadata: {}
+        data:
+          cache: true
+          media_player_entity_id: media_player.wohnzimmer
+          message: Die Waschmaschine ist fertig
+        target:
+          entity_id: tts.piper
+      - service: media_player.media_play
+        metadata: {}
+        data: {}
+        target:
+          entity_id: media_player.wohnzimmer
   mode: single
 - id: '1649874529226'
   alias: TV Licht bei Sonnenuntergang
@@ -578,7 +544,7 @@
       - condition: state
         entity_id: person.julia
         state: home
-    enabled: true
+    enabled: false
   - condition: time
     weekday:
     - mon
@@ -691,5 +657,31 @@
       interval_days: 28
       notification_title: Zylindrischen Bogenhanf gießen
       notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1718906240205'
+  alias: Ananasgewächs gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.ananasgewachs
+      plant_image: /local/bilder/ananasgewächs.jpg
+      reminder_time: '13:00:00'
+      notification_title: Ananasgewächs gießen
+      notification_message: Gießen, vorher Erde überprüfen
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1718906424518'
+  alias: Chinesische Hanfpalme gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.chinesische_hanfpalme
+      plant_image: /local/bilder/chinesische_hanfpalme.jpg
+      reminder_time: '18:00:00'
+      notification_title: Chinesische Hanfpflanze gießen
+      notification_message: Gießen, vorher Erde überprüfen
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
