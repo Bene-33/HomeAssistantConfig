@@ -183,6 +183,11 @@
         data: {}
         target:
           entity_id: media_player.wohnzimmer
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
       - service: tts.speak
         metadata: {}
         data:
@@ -191,6 +196,11 @@
           message: Die Waschmaschine ist fertig
         target:
           entity_id: tts.piper
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 10
+          milliseconds: 0
       - service: media_player.media_play
         metadata: {}
         data: {}
@@ -639,7 +649,7 @@
     path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
     input:
       plant_date: input_datetime.grunlilie
-      plant_image: /local/bilder/guenlilie.jpg
+      plant_image: /local/bilder/gruenlilie.jpg
       reminder_time: '18:00:00'
       notify_device: 9c6f616e77139523b879c5204d62a9bd
       notification_title: Grünlilie gießen
@@ -667,7 +677,7 @@
     input:
       plant_date: input_datetime.ananasgewachs
       plant_image: /local/bilder/ananasgewächs.jpg
-      reminder_time: '13:00:00'
+      reminder_time: '18:00:00'
       notification_title: Ananasgewächs gießen
       notification_message: Gießen, vorher Erde überprüfen
       action_name: erledigt
@@ -685,3 +695,17 @@
       notification_message: Gießen, vorher Erde überprüfen
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+- id: '1719317869480'
+  alias: Olivenbaum gießen
+  description: ''
+  use_blueprint:
+    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
+    input:
+      plant_date: input_datetime.olivenbaum
+      reminder_time: '18:00:00'
+      interval_days: 14
+      notification_title: Grünlilie gießen
+      notification_message: 'Gießen, vorher Erde überprüfen '
+      action_name: erledigt
+      notify_device: 9c6f616e77139523b879c5204d62a9bd
+      plant_image: /local/bilder/olivenbaum.jpg
