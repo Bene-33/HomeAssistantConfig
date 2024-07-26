@@ -160,6 +160,10 @@
           entity_id: media_player.wohnzimmer
           state: paused
       sequence:
+      - type: turn_on
+        device_id: b2227f95cd200e6eb95585d9dca557f6
+        entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
+        domain: switch
       - service: tts.speak
         metadata: {}
         data:
@@ -168,6 +172,10 @@
           message: Die Waschmaschine ist fertig
         target:
           entity_id: tts.piper
+      - type: turn_off
+        device_id: b2227f95cd200e6eb95585d9dca557f6
+        entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
+        domain: switch
     - conditions:
       - condition: or
         conditions:
@@ -188,6 +196,10 @@
           minutes: 0
           seconds: 5
           milliseconds: 0
+      - type: turn_on
+        device_id: b2227f95cd200e6eb95585d9dca557f6
+        entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
+        domain: switch
       - service: tts.speak
         metadata: {}
         data:
@@ -196,6 +208,10 @@
           message: Die Waschmaschine ist fertig
         target:
           entity_id: tts.piper
+      - type: turn_off
+        device_id: b2227f95cd200e6eb95585d9dca557f6
+        entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
+        domain: switch
       - delay:
           hours: 0
           minutes: 0
@@ -360,6 +376,8 @@
       notify_device: 9c6f616e77139523b879c5204d62a9bd
       action_name: erledigt
       notification_message: 'Gießen, vorher Erde überprüfen '
+      interval_days_off_season: 28
+      plant_end_month_off_season: 3
 - id: '1683996737854'
   alias: Bogenhanf gießen
   description: ''
@@ -374,6 +392,7 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+      interval_days_off_season: 28
 - id: '1683997017749'
   alias: Efeutute gießen
   description: ''
@@ -387,6 +406,7 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+      interval_days_off_season: 7
 - id: '1683997699028'
   alias: Einblatt gießen
   description: ''
@@ -400,6 +420,7 @@
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
       plant_image: /local/bilder/einblatt.jpg
+      interval_days_off_season: 7
 - id: '1683997946348'
   alias: Glücksfeder gießen
   description: ''
@@ -414,6 +435,7 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+      interval_days_off_season: 28
 - id: '1684962963899'
   alias: Benachrichtigung Pollenbelastung Graeser
   description: ''
@@ -450,6 +472,7 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+      interval_days_off_season: 7
 - id: '1700080552074'
   alias: Update notifications
   description: ''
@@ -554,7 +577,7 @@
       - condition: state
         entity_id: person.julia
         state: home
-    enabled: false
+    enabled: true
   - condition: time
     weekday:
     - mon
@@ -568,65 +591,6 @@
     data: {}
     target:
       device_id: 57586eb91c79551e919a2a78245134c3
-  mode: single
-- id: '1709099908284'
-  alias: 'Alfred leeren '
-  description: ''
-  trigger:
-  - type: turned_on
-    platform: device
-    device_id: 57586eb91c79551e919a2a78245134c3
-    entity_id: b6ff7b2a4729350493dff89a80b47fc5
-    domain: binary_sensor
-  condition: []
-  action:
-  - service: notify.notify
-    metadata: {}
-    data:
-      message: Staubbehälter leeren
-      title: Alfred leeren
-  - if:
-    - condition: device
-      device_id: 72688f69e98af530dd7c017b970515aa
-      domain: media_player
-      entity_id: 6f954d7ade7da85222f844e80770f53a
-      type: is_on
-    then:
-    - service: notify.benedikt_pc
-      metadata: {}
-      data:
-        title: Alfred leeren
-        message: Staubbehälter leeren
-  - repeat:
-      sequence:
-      - delay:
-          hours: 3
-          minutes: 0
-          seconds: 0
-          milliseconds: 0
-      - service: notify.notify
-        metadata: {}
-        data:
-          message: Staubbehälter leeren
-          title: Alfred leeren
-      - if:
-        - condition: device
-          device_id: 72688f69e98af530dd7c017b970515aa
-          domain: media_player
-          entity_id: 6f954d7ade7da85222f844e80770f53a
-          type: is_on
-        then:
-        - service: notify.benedikt_pc
-          metadata: {}
-          data:
-            title: Alfred leeren
-            message: Staubbehälter leeren
-      while:
-      - type: is_on
-        condition: device
-        device_id: 57586eb91c79551e919a2a78245134c3
-        entity_id: b6ff7b2a4729350493dff89a80b47fc5
-        domain: binary_sensor
   mode: single
 - id: '1709578037322'
   alias: Elefantenfuß gießen
@@ -642,6 +606,7 @@
       notification_title: Elefantenfuß gießen
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
+      interval_days_off_season: 28
 - id: '1716304610511'
   alias: Grünlilie gießen
   description: ''
@@ -669,6 +634,7 @@
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+      interval_days_off_season: 42
 - id: '1718906240205'
   alias: Ananasgewächs gießen
   description: ''
@@ -682,6 +648,7 @@
       notification_message: Gießen, vorher Erde überprüfen
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+      interval_days_off_season: 7
 - id: '1718906424518'
   alias: Chinesische Hanfpalme gießen
   description: ''
@@ -695,6 +662,8 @@
       notification_message: Gießen, vorher Erde überprüfen
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
+      interval_days_off_season: 98
+      plant_end_month_off_season: 3
 - id: '1719317869480'
   alias: Olivenbaum gießen
   description: ''
@@ -704,8 +673,52 @@
       plant_date: input_datetime.olivenbaum
       reminder_time: '18:00:00'
       interval_days: 14
-      notification_title: Grünlilie gießen
+      notification_title: Olivenbaum gießen
       notification_message: 'Gießen, vorher Erde überprüfen '
       action_name: erledigt
       notify_device: 9c6f616e77139523b879c5204d62a9bd
       plant_image: /local/bilder/olivenbaum.jpg
+      interval_days_off_season: 98
+- id: '1720628375647'
+  alias: Staubbehälter leeren
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 57586eb91c79551e919a2a78245134c3
+    entity_id: b6ff7b2a4729350493dff89a80b47fc5
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.notify
+    metadata: {}
+    data:
+      message: 'Alfred sein Staubbehälter ist voll;  bitte leeren '
+      title: Staubbehälter voll!
+  - repeat:
+      sequence:
+      - delay:
+          hours: 3
+          minutes: 0
+          seconds: 0
+          milliseconds: 0
+      - service: notify.notify
+        metadata: {}
+        data:
+          message: 'Alfred sein Staubbehälter ist voll;  bitte leeren '
+          title: Staubbehälter voll!
+      until:
+      - type: is_off
+        condition: device
+        device_id: 57586eb91c79551e919a2a78245134c3
+        entity_id: b6ff7b2a4729350493dff89a80b47fc5
+        domain: binary_sensor
+  mode: single
+- id: '1721680899386'
+  alias: System Set Default Theme
+  description: ''
+  use_blueprint:
+    path: ui_lovelace_minimalist/set_theme.yaml
+    input:
+      theme: minimalist-mobile
+      mode: dark
