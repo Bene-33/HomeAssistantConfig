@@ -133,6 +133,9 @@
     entity_id: timer.waschen_wolle_30degc
     from: active
     to: idle
+  - platform: state
+    entity_id:
+    - timer.waschen_pflegeleicht_40deg
   condition: []
   action:
   - parallel:
