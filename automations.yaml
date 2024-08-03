@@ -135,7 +135,7 @@
     to: idle
   - platform: state
     entity_id:
-    - timer.waschen_pflegeleicht_40deg
+    - timer.waschen_pflegeleicht_40degc
   condition: []
   action:
   - parallel:
