@@ -25,12 +25,6 @@ cards:
         show_header: true
         show_hour: auto
       - type: custom:flipdown-timer-card
-        entity: timer.waschen_hemden_40degc
-        show_error: false
-        show_title: true
-        show_header: true
-        show_hour: auto
-      - type: custom:flipdown-timer-card
         entity: timer.waschen_sport_30degc
         show_error: false
         show_title: true
@@ -42,4 +36,15 @@ cards:
         show_title: true
         show_header: true
         show_hour: auto
-
+      - type: custom:flipdown-timer-card
+        entity: timer.waschen_pflegeleicht_40degc
+        show_error: false
+        show_title: true
+        show_header: true
+        show_hour: auto
+      - type: custom:flipdown-timer-card
+        entity: timer.waschen_hemden_40degc
+        show_error: false
+        show_title: true
+        show_header: true
+        show_hour: auto
