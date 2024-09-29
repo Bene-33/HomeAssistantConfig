@@ -8,21 +8,10 @@
     to: 'on'
   condition: []
   action:
-  - service: notify.notify
-    data:
+  - data:
       title: 'Googledrive Backup Fehler '
       message: 'Fehler beheben '
-  - if:
-    - condition: device
-      device_id: 72688f69e98af530dd7c017b970515aa
-      domain: media_player
-      entity_id: media_player.benedikt_pc
-      type: is_on
-    then:
-    - service: notify.benedikt_pc
-      data:
-        message: 'Fehler beheben '
-        title: 'Googledrive Backup Fehler '
+    action: notify.notify
   mode: single
 - id: '1620231491485'
   alias: Alfred benötigt Hilfe
@@ -35,21 +24,10 @@
     to: error
   condition: []
   action:
-  - service: notify.notify
-    data:
+  - data:
       title: Alfred braucht Hilfe
       message: Alfred Steckt fest oder braucht Hilfe beim Reinigen
-  - if:
-    - condition: device
-      device_id: 72688f69e98af530dd7c017b970515aa
-      domain: media_player
-      entity_id: media_player.benedikt_pc
-      type: is_on
-    then:
-    - service: notify.benedikt_pc
-      data:
-        message: Alfred Steckt fest oder braucht Hilfe beim Reinigen
-        title: Alfred braucht Hilfe
+    action: notify.notify
   mode: single
 - id: '1620671396281'
   alias: TV und Licht anschalten
@@ -93,21 +71,10 @@
   - condition: template
     value_template: '{{ now().day == 20 }}'
   action:
-  - service: notify.notify
-    data:
+  - data:
       title: 'Alfred reinigen '
       message: 'Alfred von Haaren an den Rollen befreien und Sensoren reinigen '
-  - if:
-    - condition: device
-      device_id: 72688f69e98af530dd7c017b970515aa
-      domain: media_player
-      entity_id: media_player.benedikt_pc
-      type: is_on
-    then:
-    - service: notify.benedikt_pc
-      data:
-        message: 'Alfred von Haaren an den Rollen befreien und Sensoren reinigen '
-        title: 'Alfred reinigen '
+    action: notify.notify
   mode: single
 - id: '1629961083917'
   alias: 'Waschmaschine ist fertig '
@@ -271,21 +238,10 @@
     to: '0'
   condition: []
   action:
-  - service: notify.notify
-    data:
+  - data:
       title: Wasserfilter heute Wechseln
       message: 2x spülen danach nutzen
-  - if:
-    - condition: device
-      device_id: 72688f69e98af530dd7c017b970515aa
-      domain: media_player
-      entity_id: media_player.benedikt_pc
-      type: is_on
-    then:
-    - service: notify.benedikt_pc
-      data:
-        message: 2x spülen danach nutzen
-        title: Wasserfilter heute Wechseln
+    action: notify.notify
   mode: single
 - id: '1670681858395'
   alias: PC Licht bei Sonnenuntergang
