@@ -246,56 +246,52 @@
 - id: '1670681858395'
   alias: PC Licht bei Sonnenuntergang
   description: ''
-  trigger:
-  - platform: sun
-    event: sunset
+  triggers:
+  - event: sunset
     offset: 0
-  condition:
+    trigger: sun
+  conditions:
   - condition: state
-    entity_id: sensor.benedikt_pc_sessionstate
-    state: Unlocked
-  action:
-  - service: scene.turn_on
-    target:
+    entity_id: binary_sensor.benepc_is_online
+    state: 'on'
+  actions:
+  - target:
       entity_id: scene.gaming
     metadata: {}
+    action: scene.turn_on
   mode: single
 - id: '1670681939371'
   alias: PC und Licht anschalten
   description: ''
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id:
-    - sensor.benedikt_pc_sessionstate
-    to: Unlocked
-  condition:
+    - binary_sensor.benepc_is_online
+    to: 'on'
+  conditions:
   - condition: sun
     before: sunrise
     after: sunset
-  action:
-  - service: scene.turn_on
-    target:
+  actions:
+  - target:
       entity_id: scene.gaming
     metadata: {}
+    action: scene.turn_on
   mode: single
 - id: '1670681974598'
   alias: PC Licht ausschalten
   description: ''
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id:
-    - sensor.benedikt_pc_sessionstate
-    to: unavailable
-  - platform: state
-    entity_id:
-    - sensor.benedikt_pc_sessionstate
-    to: Locked
-  condition: []
-  action:
-  - service: scene.turn_on
-    target:
+    - binary_sensor.benepc_is_online
+    to: unknown
+  conditions: []
+  actions:
+  - target:
       entity_id: scene.gaming_licht_aus
     metadata: {}
+    action: scene.turn_on
   mode: single
 - id: '1682763613807'
   alias: Kontaktlinsen wechseln
