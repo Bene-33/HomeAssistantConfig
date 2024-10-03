@@ -82,22 +82,43 @@ cards:
           ulm_card_light_enable_color: true
           ulm_card_light_force_background_color: true
           ulm_card_light_enable_popup_tap: true
-
+  
+  - type: "custom:button-card"
+    template: "custom_card_nik_nas"
+    entity: binary_sensor.benepc_is_online
+    variables:
+      graph_span: "15sec"
+      chart_type: "radialBar"
+      entity_1:
+        entity_id: "sensor.benepc_cpu_temperature"
+        icon: ''
+        name: "Temp"
+        color: "yellow"
+        max_value: 100
+      entity_2:
+        entity_id: "sensor.benepc_memory"
+        icon: ''
+        name: "Memory"
+        color: "blue"
+        max_value: 32000
+      entity_3:
+        entity_id: "sensor.benepc_cpu_usage"
+        icon: ''
+        name: "CPU"
+        color: "green"
+        max_value: 100
+      entity_4:
+        entity_id: "sensor.benepc_audio_volume"
+        icon: "mdi:volume-source"
+        name: "volume"
+        color: "red"
+  
   - type: "custom:button-card"
     template: card_title
     label: "Sensoren"
 
   - type: horizontal-stack
     cards:
-      - type: "custom:button-card"
-        template: card_binary_sensor_alert
-        entity: sensor.benedikt_pc_sessionstate
-        variables:
-          ulm_card_binary_sensor_show_last_changed: true
-          ulm_card_binary_sensor_alert_name: PC-Benedikt
-          ulm_card_binary_sensor_alert_icon: mdi:monitor
-          ulm_card_binary_sensor_alert_color: blue
-          ulm_card_binary_sensor_alert_force_background_color: blue
       - type: "custom:button-card"
         template: card_battery
         entity: sensor.lumi_lumi_weather_battery
