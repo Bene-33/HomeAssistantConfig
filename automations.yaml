@@ -79,43 +79,43 @@
 - id: '1629961083917'
   alias: 'Waschmaschine ist fertig '
   description: ''
-  trigger:
-  - platform: state
-    entity_id: timer.baumwolle_60deg
+  triggers:
+  - entity_id: timer.baumwolle_60deg
     from: active
     to: idle
-  - platform: state
-    entity_id: timer.waschen_hemden_40degc
+    trigger: state
+  - entity_id: timer.waschen_hemden_40degc
     from: active
     to: idle
-  - platform: state
-    entity_id: timer.waschen_pflegeleicht_plus_30degc
+    trigger: state
+  - entity_id: timer.waschen_pflegeleicht_plus_30degc
     from: active
     to: idle
-  - platform: state
-    entity_id: timer.waschen_sport_30degc
+    trigger: state
+  - entity_id: timer.waschen_sport_30degc
     from: active
     to: idle
-  - platform: state
-    entity_id: timer.waschen_wolle_30degc
+    trigger: state
+  - entity_id: timer.waschen_wolle_30degc
     from: active
     to: idle
-  - platform: state
-    entity_id:
+    trigger: state
+  - entity_id:
     - timer.waschen_pflegeleicht_40degc
-  condition: []
-  action:
+    trigger: state
+  conditions: []
+  actions:
   - parallel:
-    - service: notify.mobile_app_handy_bene
-      metadata: {}
+    - metadata: {}
       data:
         message: Wäsche kann aufgehängt werden
         title: Waschmaschine ist fertig
-    - service: notify.mobile_app_iphone_von_julia
-      metadata: {}
+      action: notify.mobile_app_handy_bene
+    - metadata: {}
       data:
         title: Waschmaschine ist fertig
         message: Wäsche kann aufgehängt werden
+      action: notify.mobile_app_iphone_von_julia
   - choose:
     - conditions:
       - condition: or
@@ -134,14 +134,14 @@
         device_id: b2227f95cd200e6eb95585d9dca557f6
         entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
         domain: switch
-      - service: tts.speak
-        metadata: {}
+      - metadata: {}
         data:
           cache: true
           media_player_entity_id: media_player.wohnzimmer
           message: Die Waschmaschine ist fertig
         target:
           entity_id: tts.piper
+        action: tts.speak
       - type: turn_off
         device_id: b2227f95cd200e6eb95585d9dca557f6
         entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
@@ -156,11 +156,11 @@
           entity_id: media_player.wohnzimmer
           state: playing
       sequence:
-      - service: media_player.media_pause
-        metadata: {}
+      - metadata: {}
         data: {}
         target:
           entity_id: media_player.wohnzimmer
+        action: media_player.media_pause
       - delay:
           hours: 0
           minutes: 0
@@ -170,14 +170,14 @@
         device_id: b2227f95cd200e6eb95585d9dca557f6
         entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
         domain: switch
-      - service: tts.speak
-        metadata: {}
+      - metadata: {}
         data:
           cache: true
           media_player_entity_id: media_player.wohnzimmer
           message: Die Waschmaschine ist fertig
         target:
           entity_id: tts.piper
+        action: tts.speak
       - type: turn_off
         device_id: b2227f95cd200e6eb95585d9dca557f6
         entity_id: e936d41a775b260a5f23b2ff9fdf6dfe
@@ -187,11 +187,11 @@
           minutes: 0
           seconds: 10
           milliseconds: 0
-      - service: media_player.media_play
-        metadata: {}
+      - metadata: {}
         data: {}
         target:
           entity_id: media_player.wohnzimmer
+        action: media_player.media_play
   mode: single
 - id: '1649874529226'
   alias: TV Licht bei Sonnenuntergang
