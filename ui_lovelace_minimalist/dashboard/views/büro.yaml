@@ -84,7 +84,7 @@ cards:
           ulm_card_light_enable_popup_tap: true
       - type: 'custom:button-card'
         template: card_input_boolean
-        entity: switch.benepc_screen_onoff
+        entity: button.benepc_shutdown
         variables:
           ulm_card_input_boolean_name: Bene PC 
 
