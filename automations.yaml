@@ -266,11 +266,10 @@
   alias: PC und Licht anschalten
   description: ''
   triggers:
-  - type: turned_on
-    device_id: ccfd42fb28211c69b2760c5b42ff9992
-    entity_id: efa55e7f950612cea3f565bc75022987
-    domain: switch
-    trigger: device
+  - trigger: state
+    entity_id:
+    - switch.benepc_screen_onoff
+    to: unavailable
   conditions:
   - condition: sun
     before: sunrise
