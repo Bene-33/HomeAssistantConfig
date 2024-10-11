@@ -104,13 +104,13 @@ cards:
         entity_id: "sensor.benepc_memory_usage"
         icon: ""
         name: "Memory"
-        color: "blue"
+        color: "green"
         max_value: 100
       entity_3:
         entity_id: "sensor.benepc_cpu_usage"
         icon: ""
         name: "CPU"
-        color: "green"
+        color: "blue"
         max_value: 100
       entity_4:
         entity_id: "sensor.benepc_wifi"
