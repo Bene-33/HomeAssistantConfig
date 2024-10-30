@@ -51,14 +51,18 @@
 - id: '1620854843377'
   alias: 'TV Licht auschalten '
   description: ''
-  trigger:
-  - platform: device
-    device_id: 4dc36994073ce42f196689addbcaeede
+  triggers:
+  - device_id: 4dc36994073ce42f196689addbcaeede
     domain: media_player
     entity_id: media_player.65pus8507_12_2
     type: turned_off
-  condition: []
-  action:
+    trigger: device
+  - trigger: state
+    entity_id:
+    - sun.sun
+    to: above_horizon
+  conditions: []
+  actions:
   - scene: scene.tv_licht_aus
   mode: single
 - id: '1622209039392'
@@ -288,6 +292,10 @@
     entity_id:
     - switch.benepc_screen_onoff
     to: unavailable
+  - trigger: state
+    entity_id:
+    - sun.sun
+    to: above_horizon
   conditions: []
   actions:
   - target:
@@ -679,3 +687,18 @@
     input:
       theme: minimalist-mobile
       mode: dark
+- id: '1729966558106'
+  alias: Weather forecast notification
+  description: ''
+  use_blueprint:
+    path: milperks/weather_notification.yaml
+    input:
+      weather_entity: weather.gruendau_breitenborn
+      notify_device:
+      - 9c6f616e77139523b879c5204d62a9bd
+      time: 07:00:00
+      notify_message:
+      - condition
+      - temperature
+      - precipitation
+      - wind
