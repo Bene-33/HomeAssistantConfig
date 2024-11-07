@@ -696,6 +696,7 @@
       weather_entity: weather.gruendau_breitenborn
       notify_device:
       - 9c6f616e77139523b879c5204d62a9bd
+      - 61b8611d91abdf0795a0ba6976603fac
       time: 07:00:00
       notify_message:
       - condition
