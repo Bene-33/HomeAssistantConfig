@@ -22,93 +22,61 @@ cards:
 
   - type: "custom:button-card"
     template: card_title
-    label: "Server"
+    label: "server"
+    
+  - type: "custom:button-card"
+    template: "custom_card_apexcharts"
+    variables:
+      chart_type: "radialBar"
+      graph_span: "1h"
+      entity_1:
+        entity_id: "sensor.10_33_33_50_cpu_auslastung_2"
+        icon: ""
+        name: "CPU"
+        color: "blue"
+        max_value: 100
+      entity_2:
+        entity_id: "sensor.10_33_33_50_speicherauslastung"
+        icon: ""
+        name: "Memory"
+        color: "yellow"
+        max_value: 100
+      entity_3:
+        entity_id: "sensor.10_33_33_50_mnt_pve_backup_datentrager_verwendet_2"
+        icon: ""
+        name: "disk"
+        color: "green"
+        max_value: 100
 
-  - type: "horizontal-stack"
-    cards:
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.processor_use_percent
-        align_icon: left
-        align_state: center
-        name: "CPU Auslastung"
-        hours_to_show: 24
-        hold_action:
-          action: more-info
-        show:
-          fill: fade
-          state: true
-          name: true
-          legend: true
-          icon: true
-          labels: false
-          icon_adaptive_color: true
-          name_adaptive_color: true
-          extrema: false
-          average: true
-        color_thresholds:
-          - value: 0
-            color: "#18820a"
-          - value: 40
-            color: "#ad5d07"
-          - value: 60
-            color: "#c9210e"
-  - type: "horizontal-stack"
-    cards:
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.memory_free
-        align_icon: left
-        align_state: center
-        name: "RAM Frei"
-        hours_to_show: 24
-        hold_action:
-          action: more-info
-        show:
-          fill: fade
-          state: true
-          name: true
-          legend: true
-          icon: true
-          labels: false
-          icon_adaptive_color: true
-          name_adaptive_color: true
-          extrema: false
-          average: true
-        color_thresholds:
-          - value: 4000
-            color: "#18820a"
-          - value: 2000
-            color: "#ad5d07"
-          - value: 1000
-            color: "#c9210e"
-      - type: custom:mini-graph-card
-        entities:
-          - sensor.disk_use_percent
-        align_icon: left
-        align_state: center
-        name: "Speicher"
-        hours_to_show: 24
-        hold_action:
-          action: more-info
-        show:
-          fill: fade
-          state: true
-          name: true
-          legend: true
-          icon: true
-          labels: false
-          icon_adaptive_color: true
-          name_adaptive_color: true
-          extrema: false
-          average: false
-        color_thresholds:
-          - value: 0
-            color: "#18820a"
-          - value: 60
-            color: "#ad5d07"
-          - value: 90
-            color: "#c9210e"
+
+
+  - type: "custom:button-card"
+    template: card_title
+    label: "Home Assistant"
+
+  - type: "custom:button-card"
+    template: "custom_card_apexcharts"
+    variables:
+      chart_type: "radialBar"
+      graph_span: "1h"
+      entity_1:
+        entity_id: "sensor.localhost_cpu_used"
+        icon: ""
+        name: "CPU"
+        color: "blue"
+        max_value: 100
+      entity_2:
+        entity_id: "sensor.localhost_ram_used_percent"
+        icon: ""
+        name: "Memory"
+        color: "yellow"
+        max_value: 100
+      entity_3:
+        entity_id: "sensor.localhost_ssl_used_percent"
+        icon: ""
+        name: "disk"
+        color: "green"
+        max_value: 100
 
   - type: "custom:button-card"
     template: card_title

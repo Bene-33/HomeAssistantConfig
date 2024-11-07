@@ -84,9 +84,14 @@ cards:
           ulm_card_light_enable_popup_tap: true
       - type: 'custom:button-card'
         template: card_input_boolean
-        entity: button.benepc_shutdown
+        entity: switch.benepc_screen_onoff
         variables:
-          ulm_card_input_boolean_name: Bene PC 
+          ulm_card_input_boolean_name: Bene PC
+          ulm_card_vertical_button_state: 
+
+  - type: "custom:button-card"
+    template: card_title
+    label: "Sensoren"
 
   - type: "custom:button-card"
     template: "custom_card_nik_nas"
@@ -117,10 +122,6 @@ cards:
         icon: "mdi:wifi"
         name: "Wifi"
         color: "red"
-
-  - type: "custom:button-card"
-    template: card_title
-    label: "Sensoren"
 
   - type: horizontal-stack
     cards:
