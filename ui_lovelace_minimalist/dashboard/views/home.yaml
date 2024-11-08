@@ -17,6 +17,12 @@ cards:
           ulm_chip_mdi_icon_state_icon: mdi:lightbulb
           ulm_chip_mdi_icon_state_icon_color: "orange"
 
+      - type: "custom:button-card"
+        template: chip_temperature
+        variables:
+          ulm_chip_temperature_outside: sensor.weather_outside_home
+          ulm_chip_temperature_weather: !secret weatherlocation
+
   - type: "custom:button-card"
     template: "card_esh_welcome"
     triggers_update: "input_boolean.minimalist_dropdown"
