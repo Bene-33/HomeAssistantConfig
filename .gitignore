@@ -18,6 +18,7 @@
 secrets.yaml
 home-assistant.log
 home-assistant-rollback.log
+ip_bans.yaml
 
 .ssh
 .storage

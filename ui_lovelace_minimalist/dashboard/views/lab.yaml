@@ -6,3 +6,8 @@ cards:
     variables:
       ulm_chip_back_path: home
 
+  - type: "custom:button-card"
+    template: chip_temperature
+    variables:
+      ulm_chip_temperature_outside: 
+      ulm_chip_temperature_weather: !secret weatherlocation
