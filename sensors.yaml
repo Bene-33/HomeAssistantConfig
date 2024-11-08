@@ -1,15 +1,14 @@
-
 - platform: time_date
   display_options:
-  - 'time'
-  - 'date'
+    - "time"
+    - "date"
 
 #Pollenflug daten importieren vom Deutschen Wetter Dienst
 - platform: rest
   scan_interval: 3600
   name: "DWD Pollen"
   resource: https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json
-  json_attributes_path: !secret dwd_pollen 
+  json_attributes_path: !secret dwd_pollen
   json_attributes:
     #- Erle
     #- Beifuss
@@ -35,3 +34,11 @@
         tomorrow: >-
           {% set dwd_state = state_attr('sensor.dwd_pollen', 'Graeser')['tomorrow'] %}
           {% if dwd_state == "3" %}6{% elif dwd_state == "2-3"%}5{% elif dwd_state == "2"%}4{% elif dwd_state == "1-2"%}3{% elif dwd_state == "1"%}2{% elif dwd_state == "0-1"%}1{% else %}0{% endif %}
+
+
+- platform: template
+  sensors:
+    weather_outside_home:
+        friendly_name: "Weather outside"
+        value_template: >-
+          {{state_attr('weather.gruendau_breitenborn','temperature')}}
