@@ -8,73 +8,145 @@ cards:
 
   - type: "horizontal-stack"
     cards:
-    - type: custom:mini-graph-card
-      entities:
-        - sensor.speedtest_download
-      align_icon: left
-      align_state: center
-      name: 'Download'
-      hours_to_show: 24
-      tap_action: 
-        action: more-info
-      show:
-        fill: fade
-        state: true
-        name: true
-        legend: true
-        icon: true
-        labels: false
-        icon_adaptive_color: true
-        name_adaptive_color: true
-        extrema: false
-        average: true
-      color_thresholds:
-        - value: 0
-          color: "#c9210e"
-        - value: 60
-          color: "#c9620e"
-        - value: 85
-          color: "#18820a"
-    - type: custom:mini-graph-card
-      entities:
-        - sensor.speedtest_upload
-      align_icon: left
-      align_state: center
-      name: 'Upload'
-      hours_to_show: 24
-      tap_action: 
-        action: more-info
-      show:
-        fill: fade
-        state: true
-        name: true
-        legend: true
-        icon: true
-        labels: false
-        icon_adaptive_color: true
-        name_adaptive_color: true
-        extrema: false
-        average: true
-      color_thresholds:
-        - value: 0
-          color: "#c9210e"
-        - value: 30
-          color: "#c9620e"
-        - value: 45
-          color: "#18820a"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.speedtest_download
+        align_icon: left
+        align_state: center
+        name: "Download"
+        hours_to_show: 24
+        tap_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: false
+        color_thresholds:
+          - value: 0
+            color: "#c9210e"
+          - value: 60
+            color: "#c9620e"
+          - value: 85
+            color: "#18820a"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.speedtest_upload
+        align_icon: left
+        align_state: center
+        name: "Upload"
+        hours_to_show: 24
+        tap_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: false
+        color_thresholds:
+          - value: 0
+            color: "#c9210e"
+          - value: 30
+            color: "#c9620e"
+          - value: 45
+            color: "#18820a"
+
+  - type: "horizontal-stack"
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.adguard_home_dns_abfragen
+        align_icon: left
+        align_state: center
+        name: "DNS"
+        hours_to_show: 168
+        tap_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: false
+        color_thresholds:
+          - value: 0
+            color: "#008a39"
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.adguard_home_dns_abfragen_blockiert
+        align_icon: left
+        align_state: center
+        name: "DNS blocked"
+        hours_to_show: 168
+        tap_action:
+          action: more-info
+        show:
+          fill: fade
+          state: true
+          name: true
+          legend: true
+          icon: true
+          labels: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+          extrema: false
+          average: false
+        color_thresholds:
+          - value: 0
+            color: "#8a0015"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_input_boolean
+        entity: switch.adguard_home_filterung
+        variables:
+          ulm_card_input_boolean_name: DNS
+      - type: "custom:button-card"
+        template: card_input_boolean
+        entity: switch.adguard_home_schutz
+        variables:
+          ulm_card_input_boolean_name: safe
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_input_boolean
+        entity: switch.adguard_home_sicheres_surfen
+        variables:
+          ulm_card_input_boolean_name: web
+      - type: "custom:button-card"
+        template: card_input_boolean
+        entity: switch.adguard_home_kindersicherung
+        variables:
+          ulm_card_input_boolean_name: kid
 
   - type: horizontal-stack
     cards:
       - type: picture
-        image: !secret wifiqr 
-
-  - type: 'vertical-stack'
+        image: !secret wifiqr
+  - type: "vertical-stack"
     cards:
-      - type: 'custom:button-card'
+      - type: "custom:button-card"
         template: card_title
-        name: !secret wifissid
-        label: 'SSID' 
-      - type: 'custom:button-card'
+        label: !secret wifissid
+        name: "SSID"
+      - type: "custom:button-card"
         template: card_title
-        name: !secret wifipw
-        label: 'Passwort' 
+        label: !secret wifipw
+        name: "Passwort"
