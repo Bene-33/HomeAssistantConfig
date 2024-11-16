@@ -82,21 +82,10 @@ cards:
     cards:
       - type: "custom:button-card"
         template: card_light
-        entity: light.pc_licht_2
+        entity: light.pc_licht
         variables:
           ulm_card_light_icon: hue:lightstrip-tv
           ulm_card_light_name: PC Licht
-          ulm_card_light_enable_collapse: true
-          ulm_card_light_enable_slider: true
-          ulm_card_light_enable_color: true
-          ulm_card_light_force_background_color: true
-          ulm_card_light_enable_popup_tap: true
-      - type: "custom:button-card"
-        template: card_light
-        entity: light.smart_ambient_light
-        variables:
-          ulm_card_light_icon: hue:go
-          ulm_card_light_name: Hintergrund
           ulm_card_light_enable_collapse: true
           ulm_card_light_enable_slider: true
           ulm_card_light_enable_color: true
