@@ -21,3 +21,4 @@ views:
   - !include views/julia.yaml
   - !include views/house.yaml
   - !include views/tv_remote.yaml
+  - !include views/plants.yaml
