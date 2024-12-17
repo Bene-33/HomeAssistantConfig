@@ -23,7 +23,7 @@ cards:
   - type: "custom:button-card"
     template: card_title
     label: "server"
-    
+
   - type: "custom:button-card"
     template: "custom_card_apexcharts"
     variables:
@@ -42,13 +42,11 @@ cards:
         color: "yellow"
         max_value: 100
       entity_3:
-        entity_id: "sensor.10_33_33_50_mnt_pve_backup_datentrager_verwendet_2"
+        entity_id: "sensor.10_33_33_50_datentrager_verwendet_2"
         icon: ""
         name: "disk"
         color: "green"
         max_value: 100
-
-
 
   - type: "custom:button-card"
     template: card_title
@@ -86,9 +84,9 @@ cards:
     cards:
       - type: "custom:button-card"
         template: card_battery
-        entity: sensor.handy_bene_battery_level
+        entity: sensor.benehandy_battery_level
         variables:
-          ulm_card_battery_charger_type_entity_id: sensor.handy_bene_charger_type
+          ulm_card_battery_charger_type_entity_id: sensor.benehandy_battery_state
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 80
           ulm_card_battery_name: Bene Handy

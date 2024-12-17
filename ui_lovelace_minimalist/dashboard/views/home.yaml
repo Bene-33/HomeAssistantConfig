@@ -67,7 +67,7 @@ cards:
           ulm_card_person_entity: person.benedikt
           ulm_card_person_use_entity_picture: true
           ulm_card_person_icon: mdi:face-man
-          ulm_card_person_battery: sensor.handy_bene_battery_level
+          ulm_card_person_battery: sensor.benehandy_battery_level
 
       - type: "custom:button-card"
         template: card_person
