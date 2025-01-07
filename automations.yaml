@@ -112,14 +112,14 @@
   - parallel:
     - metadata: {}
       data:
-        message: Wäsche kann aufgehängt werden
-        title: Waschmaschine ist fertig
-      action: notify.mobile_app_handy_bene
-    - metadata: {}
-      data:
         title: Waschmaschine ist fertig
         message: Wäsche kann aufgehängt werden
       action: notify.mobile_app_iphone_von_julia
+    - action: notify.mobile_app_benehandy
+      metadata: {}
+      data:
+        message: Wäsche kann aufgehängt werden
+        title: Waschmaschine
   - choose:
     - conditions:
       - condition: or
@@ -306,115 +306,39 @@
 - id: '1682763613807'
   alias: Kontaktlinsen wechseln
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - input_number.kontaktlinsen
     enabled: true
-  condition:
+    trigger: state
+  conditions:
   - condition: template
     value_template: '{{ state_attr(''input_number.kontaktlinsen'', ''max'')|float(0)
       == states(''input_number.kontaktlinsen'')|float(0) }}'
     enabled: true
-  action:
-  - service: input_number.set_value
-    data:
+  actions:
+  - data:
       value: 0
     target:
       entity_id: input_number.kontaktlinsen
-  - service: notify.mobile_app_handy_bene
+    action: input_number.set_value
+  - action: notify.mobile_app_benehandy
     data:
-      title: Kontaktlinsen wechseln
-      message: Kontaktlinsen wegwerfen und neue benutzen
+      title: Kontaktlinsen wechsel
   mode: single
-- id: '1683996473936'
-  alias: 'Aloe Vera gießen '
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.aloe_vera
-      plant_image: /local/bilder/aloe_vera.jpg
-      reminder_time: '18:00:00'
-      interval_days: 14
-      notification_title: Aloe Vera gießen
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      action_name: erledigt
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      interval_days_off_season: 28
-      plant_end_month_off_season: 3
-- id: '1683996737854'
-  alias: Bogenhanf gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.bogenhanf
-      plant_image: /local/bilder/bogenhanf.jpg
-      reminder_time: '18:00:00'
-      interval_days: 14
-      notification_title: Bogenhanf gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      interval_days_off_season: 28
-- id: '1683997017749'
-  alias: Efeutute gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.efeutute
-      plant_image: /local/bilder/efeutute.jpg
-      reminder_time: '18:00:00'
-      notification_title: Efeutute gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      interval_days_off_season: 7
-- id: '1683997699028'
-  alias: Einblatt gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.einblatt
-      reminder_time: '18:00:00'
-      notification_title: Einblatt gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      plant_image: /local/bilder/einblatt.jpg
-      interval_days_off_season: 7
-- id: '1683997946348'
-  alias: Glücksfeder gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.glucksfeder
-      plant_image: /local/bilder/gluecksfeder.jpg
-      reminder_time: '18:00:00'
-      interval_days: 14
-      notification_title: Glücksfeder gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      interval_days_off_season: 28
 - id: '1684962963899'
   alias: Benachrichtigung Pollenbelastung Graeser
   description: ''
-  trigger:
-  - platform: time
-    at: 07:00:00
-  condition:
+  triggers:
+  - at: 07:00:00
+    trigger: time
+  conditions:
   - condition: numeric_state
     entity_id: sensor.dwd_pollen_graeser
     attribute: today
     above: 0
-  action:
-  - service: notify.mobile_app_handy_bene
-    data:
+  actions:
+  - data:
       title: Achtung Gräserpollen Belastung ist
       message: '{% if state_attr(''sensor.dwd_pollen_graeser'',''today'') == 6 %}  übertrieben
         hoch  {% elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 5 %}  sehr
@@ -423,21 +347,8 @@
         elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 2 %}  niedrig  {%
         elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 1 %} sehr niedrig     {%
         else %} nicht vorhanden {% endif %}'
+    action: notify.mobile_app_benehandy
   mode: single
-- id: '1687007985246'
-  alias: Glückstaler gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.gluckstaler
-      reminder_time: '18:00:00'
-      plant_image: /local/bilder/glueckstaler.jpg
-      notification_title: Glückstaler gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      interval_days_off_season: 7
 - id: '1700080552074'
   alias: Update notifications
   description: ''
@@ -504,7 +415,7 @@
       take_backup: false
       only_after: 07:00:00
       only_before: '20:00:00'
-      mobile_app_device_2: 9c6f616e77139523b879c5204d62a9bd
+      mobile_app_device_2: 61b8611d91abdf0795a0ba6976603fac
 - id: '1705495382555'
   alias: Batteries low notification
   description: ''
@@ -517,12 +428,12 @@
         entity_id:
         - sensor.alfred_batterie
         - sensor.iphone_von_julia_battery_level
-        - sensor.handy_bene_battery_level
+        - sensor.benehandy_battery_level
       actions:
-      - service: notify.notify
-        metadata: {}
+      - metadata: {}
         data:
           message: '{{sensors}}'
+        action: notify.notify
 - id: '1709099857571'
   alias: tägliches Staubsaugen
   description: ''
@@ -557,93 +468,6 @@
     target:
       device_id: 57586eb91c79551e919a2a78245134c3
   mode: single
-- id: '1709578037322'
-  alias: Elefantenfuß gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.elefantenbaum
-      reminder_time: '18:00:00'
-      interval_days: 14
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      plant_image: /local/bilder/elefantenfuß.jpg
-      notification_title: Elefantenfuß gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      interval_days_off_season: 28
-- id: '1716304610511'
-  alias: Grünlilie gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.grunlilie
-      plant_image: /local/bilder/gruenlilie.jpg
-      reminder_time: '18:00:00'
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      notification_title: Grünlilie gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-- id: '1716304761834'
-  alias: Zylindrischen Bogenhanf gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.zylindrischer_bogenhanaf
-      plant_image: /local/bilder/zylindrischer_bogenhanf.jpg
-      reminder_time: '18:00:00'
-      interval_days: 28
-      notification_title: Zylindrischen Bogenhanf gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      interval_days_off_season: 42
-- id: '1718906240205'
-  alias: Ananasgewächs gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.ananasgewachs
-      plant_image: /local/bilder/ananasgewächs.jpg
-      reminder_time: '18:00:00'
-      notification_title: Ananasgewächs gießen
-      notification_message: Gießen, vorher Erde überprüfen
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      interval_days_off_season: 7
-- id: '1718906424518'
-  alias: Chinesische Hanfpalme gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.chinesische_hanfpalme
-      plant_image: /local/bilder/chinesische_hanfpalme.jpg
-      reminder_time: '18:00:00'
-      notification_title: Chinesische Hanfpflanze gießen
-      notification_message: Gießen, vorher Erde überprüfen
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      interval_days_off_season: 98
-      plant_end_month_off_season: 3
-- id: '1719317869480'
-  alias: Olivenbaum gießen
-  description: ''
-  use_blueprint:
-    path: Getslow/send-actionable-notification-when-plants-need-water-including-optional-image.yaml
-    input:
-      plant_date: input_datetime.olivenbaum
-      reminder_time: '18:00:00'
-      interval_days: 14
-      notification_title: Olivenbaum gießen
-      notification_message: 'Gießen, vorher Erde überprüfen '
-      action_name: erledigt
-      notify_device: 9c6f616e77139523b879c5204d62a9bd
-      plant_image: /local/bilder/olivenbaum.jpg
-      interval_days_off_season: 98
 - id: '1720628375647'
   alias: Staubbehälter leeren
   description: ''
