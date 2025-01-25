@@ -254,26 +254,18 @@
   - event: sunset
     offset: 0
     trigger: sun
-  conditions:
-  - condition: device
-    type: is_on
-    device_id: ccfd42fb28211c69b2760c5b42ff9992
-    entity_id: efa55e7f950612cea3f565bc75022987
-    domain: switch
+  conditions: []
   actions:
   - target:
       entity_id: scene.gaming
     metadata: {}
     action: scene.turn_on
+    data: {}
   mode: single
 - id: '1670681939371'
   alias: PC und Licht anschalten
   description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - switch.benepc_screen_onoff
-    to: 'on'
+  triggers: []
   conditions:
   - condition: sun
     before: sunrise
@@ -283,15 +275,12 @@
       entity_id: scene.gaming
     metadata: {}
     action: scene.turn_on
+    data: {}
   mode: single
 - id: '1670681974598'
   alias: PC Licht ausschalten
   description: ''
   triggers:
-  - trigger: state
-    entity_id:
-    - switch.benepc_screen_onoff
-    to: unavailable
   - trigger: state
     entity_id:
     - sun.sun
@@ -302,6 +291,7 @@
       entity_id: scene.gaming_licht_aus
     metadata: {}
     action: scene.turn_on
+    data: {}
   mode: single
 - id: '1682763613807'
   alias: Kontaktlinsen wechseln
