@@ -115,7 +115,7 @@
         title: Waschmaschine ist fertig
         message: Wäsche kann aufgehängt werden
       action: notify.mobile_app_iphone_von_julia
-    - action: notify.mobile_app_benehandy
+    - action: notify.mobile_app_pixel_9
       metadata: {}
       data:
         message: Wäsche kann aufgehängt werden
@@ -312,9 +312,9 @@
     target:
       entity_id: input_number.kontaktlinsen
     action: input_number.set_value
-  - action: notify.mobile_app_benehandy
+  - action: notify.mobile_app_pixel_9
     data:
-      title: Kontaktlinsen wechsel
+      title: Kontaktlisnen wechseln
   mode: single
 - id: '1684962963899'
   alias: Benachrichtigung Pollenbelastung Graeser
@@ -337,7 +337,7 @@
         elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 2 %}  niedrig  {%
         elif state_attr(''sensor.dwd_pollen_graeser'',''today'') == 1 %} sehr niedrig     {%
         else %} nicht vorhanden {% endif %}'
-    action: notify.mobile_app_benehandy
+    action: notify.mobile_app_pixel_9
   mode: single
 - id: '1700080552074'
   alias: Update notifications
@@ -400,7 +400,22 @@
       - update.watchman_update
       - update.weather_radar_card_update
       - update.ytube_music_player_update
-      mobile_app_device: 9c6f616e77139523b879c5204d62a9bd
+      - update.ai_automation_suggester_update
+      - update.apexcharts_card_update
+      - update.assist_microphone_update
+      - update.benepc_update
+      - update.cloud_homeklaar_duckdns_org_none
+      - update.glances_update
+      - update.influxdb_update
+      - update.lightstripe_firmware
+      - update.mosquitto_broker_update
+      - update.mqtt_media_player_update
+      - update.music_assistant_update_2
+      - update.phpmyadmin_update
+      - update.sofa1_firmware
+      - update.sofa2_firmware
+      - update.wohnzimmerambiant1_firmware
+      mobile_app_device: 381058e9e38b203373b6ad787ca54d56
       send_to_ha: true
       take_backup: false
       only_after: 07:00:00
@@ -418,7 +433,7 @@
         entity_id:
         - sensor.alfred_batterie
         - sensor.iphone_von_julia_battery_level
-        - sensor.benehandy_battery_level
+        - sensor.pixel_9_battery_level
       actions:
       - metadata: {}
         data:
@@ -509,7 +524,7 @@
     input:
       weather_entity: weather.gruendau_breitenborn
       notify_device:
-      - 9c6f616e77139523b879c5204d62a9bd
+      - 381058e9e38b203373b6ad787ca54d56
       - 61b8611d91abdf0795a0ba6976603fac
       time: 07:00:00
       notify_message:

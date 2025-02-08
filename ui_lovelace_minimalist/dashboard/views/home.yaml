@@ -6,13 +6,6 @@ cards:
       - type: "custom:button-card"
         template: chip_mdi_icon_state
         variables:
-          ulm_chip_mdi_icon_state_entity: sensor.wasser_filter_verbliebene_zeit
-          ulm_chip_mdi_icon_state_icon: mdi:water-sync
-          ulm_chip_mdi_icon_state_icon_color: "blue"
-
-      - type: "custom:button-card"
-        template: chip_mdi_icon_state
-        variables:
           ulm_chip_mdi_icon_state_entity: sensor.counter_lights_on
           ulm_chip_mdi_icon_state_icon: mdi:lightbulb
           ulm_chip_mdi_icon_state_icon_color: "orange"
@@ -67,7 +60,7 @@ cards:
           ulm_card_person_entity: person.benedikt
           ulm_card_person_use_entity_picture: true
           ulm_card_person_icon: mdi:face-man
-          ulm_card_person_battery: sensor.benehandy_battery_level
+          ulm_card_person_battery: sensor.pixel_9_battery_level
 
       - type: "custom:button-card"
         template: card_person
