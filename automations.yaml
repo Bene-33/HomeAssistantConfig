@@ -532,3 +532,34 @@
       - temperature
       - precipitation
       - wind
+- id: '1740231486773'
+  alias: e-bike geladen
+  description: ''
+  triggers:
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: e_bike_geladen
+    trigger: event
+  conditions: []
+  actions:
+  - data:
+      date: '{{ as_timestamp(now())|timestamp_custom(''%Y-%m-%d'') }}'
+    entity_id: input_datetime.e_bike_geladen
+    action: input_datetime.set_datetime
+  mode: single
+- id: '1740231575129'
+  alias: e-bike Akku prüfen
+  description: ''
+  triggers:
+  - entity_id:
+    - sensor.e_bike_akku_laden
+    from: '1'
+    to: '0'
+    trigger: state
+  conditions: []
+  actions:
+  - data:
+      message: ggf. laden
+      title: E-Bike Akku prüfen!!
+    action: notify.notify
+  mode: single

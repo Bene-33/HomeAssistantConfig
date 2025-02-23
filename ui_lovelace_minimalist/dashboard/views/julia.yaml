@@ -5,3 +5,34 @@ cards:
     template: chip_back
     variables:
       ulm_chip_back_path: home
+
+  - type: "custom:button-card"
+    template: card_title
+    label: "e-bike Akku"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: "card_script"
+        variables:
+          ulm_card_script_title: "geladen"
+          ulm_card_script_icon: "mdi:ev-plug-type2"
+        tap_action:
+          action: call-service
+          service: automation.trigger
+          service_data:
+            entity_id: automation.e_bike_laden
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_generic_swap
+        entity: sensor.e_bike_akku_laden
+        variables:
+          ulm_card_generic_swap_name: "erneut laden in"
+          ulm_card_generic_swap_icon: "mdi:timeline-alert"
+      - type: "custom:button-card"
+        template: card_generic_swap
+        entity: input_datetime.e_bike_geladen
+        variables:
+          ulm_card_generic_swap_name: "letzte Ladung"
+          ulm_card_generic_swap_icon: "mdi:ev-station"
